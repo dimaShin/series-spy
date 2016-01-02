@@ -6,8 +6,6 @@ class Parser {
     const ExUA = require('./drivers/ex_ua');
 
     this.exUa = new ExUA();
-    this.async = require('asyncawait/async');
-    this.await = require('asyncawait/await');
   }
 
   parse (opt) {
