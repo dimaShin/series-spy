@@ -28,6 +28,7 @@ class ExUaDriver {
           return;
         }
         console.log('html loaded from: ', self.URL.base + self.URL.foreignSerials);
+        console.log(body);
         const $ = self.cheerio.load(body);
         const tables = $('table');
         console.log('got tables: ', tables.length);
