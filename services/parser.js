@@ -3,7 +3,7 @@ class Parser {
 
   constructor () {
     "use strict";
-    const ExUA = require(__dirname + '/drivers/ex_ua');
+    const ExUA = require('../drivers/ex_ua');
 
     this.exUa = new ExUA();
   }
