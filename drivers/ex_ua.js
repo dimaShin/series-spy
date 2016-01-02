@@ -32,6 +32,7 @@ class ExUaDriver {
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
         const match = [];
 
+        console.log('got cards: ', cards.length);
         cards.forEach(function (card) {
           "use strict";
           const img = $(card).find('img');
@@ -47,6 +48,7 @@ class ExUaDriver {
           const rule = ExUaDriver._getRule(title, rules);
 
           if (rule) {
+            console.log('got match', title);
             let season = ExUaDriver._getSeason(title);
 
             if (season !== null && (rule.season !== undefined && season < rule.season)) {

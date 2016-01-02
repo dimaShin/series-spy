@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const CronJob = require('cron').CronJob;
 
 
-const parser = require('./parser');
+const parser = require('./services/parser');
 const parseOptions = {
   driver: 'exUa',
   method: 'foreignSerials',
