@@ -22,13 +22,15 @@ class ExUaDriver {
       self.request(url, function (err, response, body) {
         "use strict";
 
-        if (err) {
+        if (err) {reject
           console.log(err);
+          reject(err);
           return;
         }
-
+        console.log('html loaded from: ', self.URL.base + self.URL.foreignSerials);
         const $ = self.cheerio.load(body);
         const tables = $('table');
+        console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
         const match = [];
 
