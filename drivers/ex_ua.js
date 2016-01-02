@@ -1,0 +1,142 @@
+'use strict';
+
+class ExUaDriver {
+  constructor () {
+    "use strict";
+    this.request = require('request');
+    this.cheerio = require('cheerio');
+    this.Promise = require('bluebird');
+    this.URL = {
+      base: 'http://www.ex.ua',
+      foreignSerials: '/ru/video/foreign_series?per=200'
+    }
+  }
+
+  foreignSerials (rules) {
+    "use strict";
+    var self = this;
+
+    return new Promise (function (resolve, reject) {
+      "use strict";
+      const url = self.URL.base + self.URL.foreignSerials;
+      self.request(url, function (err, response, body) {
+        "use strict";
+
+        if (err) {
+          console.log(err);
+          return;
+        }
+
+        const $ = self.cheerio.load(body);
+        const tables = $('table');
+        const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
+        const match = [];
+
+        cards.forEach(function (card) {
+          "use strict";
+          const img = $(card).find('img');
+          const title = ExUaDriver._getCardTitle(img[0]);
+
+          if (!title) {
+            return;
+          }
+
+          const a = $(card).find('a');
+          const href = ExUaDriver._getCardHref(a[0]);
+
+          const rule = ExUaDriver._getRule(title, rules);
+
+          if (rule) {
+            let season = ExUaDriver._getSeason(title);
+
+            if (season !== null && (rule.season !== undefined && season < rule.season)) {
+              console.log('season do not match: ', season, rule.season);
+              return;
+            }
+
+            let episode = ExUaDriver._getEpisode(title);
+
+            if (episode !== null && (rule.episode !== undefined && episode < rule.episode)) {
+              console.log('episode do not match: ', episode, rule.episode);
+              return;
+            }
+            match.push({
+              title: title,
+              episode: episode,
+              season: season,
+              href: self.URL.base + href
+            });
+          }
+        });
+
+        resolve(match);
+      });
+    });
+  }
+
+  static _toArray (arrayLike) {
+    return Array.prototype.slice.call(arrayLike, 0);
+  }
+
+  static _getCardTitle (img) {
+
+    if (!img || !img.attribs.alt) {
+      return null;
+    }
+
+    return img.attribs.alt;
+  }
+
+  static _getCardHref (a) {
+
+    if (!a || !a.attribs.href) {
+      return null;
+    }
+
+    return a.attribs.href;
+  }
+
+  static _getRule (string, rules) {
+    "use strict";
+    let result;
+
+    rules.forEach(function (rule) {
+      if (string.match(rule.regExp)) {
+        result = rule;
+        return false;
+      }
+    });
+
+    return result;
+  }
+
+  static _getEpisode (title) {
+    "use strict";
+    const episodeRegExp = new RegExp('(Серия|Cерия)\\s*(\\d*)\\s*(-\\s*(\\d*))?');
+    const episodeMatch = title.match(episodeRegExp);
+
+    if (!episodeMatch) {
+      return null;
+    }
+
+    if (episodeMatch[4]) {
+      return +episodeMatch[4];
+    }
+    return +episodeMatch[2];
+  }
+
+  static _getSeason (title) {
+    "use strict";
+    const seasonRegExp = new RegExp('Сезон\\s*(\\d*)', 'i');
+    const seasonMatch = title.match(seasonRegExp);
+
+    if (!seasonMatch) {
+      return null;
+    }
+
+    else return +seasonMatch[1];
+  }
+
+}
+
+module.exports = ExUaDriver;

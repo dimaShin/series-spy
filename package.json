@@ -1,0 +1,15 @@
+{
+  "name": "series_spy",
+  "version": "0.0.0",
+  "description": "Spy that will tell you when something new on ex.ua for u",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iashin Dmitriy",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "node-cron-jobs": "^1.0.4"
+  }
+}
