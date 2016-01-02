@@ -22,7 +22,7 @@ class ExUaDriver {
       self.request(url, function (err, response, body) {
         "use strict";
 
-        if (err) {reject
+        if (err) {
           console.log(err);
           reject(err);
           return;
