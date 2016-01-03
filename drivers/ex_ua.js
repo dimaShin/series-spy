@@ -36,7 +36,7 @@ class ExUaDriver {
 
         if (err) {
           console.log(err);
-          reject(err);
+          reject('got response error: ', err.req);
           return;
         }
         console.log('got response: ', response.req);
