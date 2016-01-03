@@ -25,7 +25,7 @@ class ExUaDriver {
       console.log('html will be loaded from: ', url);
       self.request
         .get(url)
-        .set('Cookies', 'ccid=6142029302196691130; mail_show=0; _ym_uid=1446579134698961487; uper=200; _ga=GA1.2.1692449598.1430052637; lastAds=1451751689; lastAfterPaus=1451751694; udpr=1')
+        .set('Cookie', 'ccid=6142029302196691130; mail_show=0; _ym_uid=1446579134698961487; uper=200; _ga=GA1.2.1692449598.1430052637; lastAds=1451751689; lastAfterPaus=1451751694; udpr=1')
         .set('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
         .set('Upgrade-Insecure-Requests', 1)
         //.query(self.URL.foreignSerials.params)
