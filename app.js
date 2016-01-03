@@ -66,11 +66,11 @@ var job = new CronJob({
       }
 
       console.log('found ' + result.length + ' new series');
-      const mailer = require('./services/mailer');
-      mailer.send({
-        tplPath: __dirname + '/email.hbs',
-        data: result
-      });
+      //const mailer = require('./services/mailer');
+      //mailer.send({
+      //  tplPath: __dirname + '/email.hbs',
+      //  data: result
+      //});
     });
   },
   onComplete () {

@@ -8,7 +8,7 @@ class ExUaDriver {
     this.Promise = require('bluebird');
     this.URL = {
       base: 'http://www.ex.ua',
-      foreignSerials: '/ru/video/foreign_series?per=200&p=1'
+      foreignSerials: '/ru/video/foreign_series?per=200&p=0'
     }
   }
 
@@ -28,7 +28,7 @@ class ExUaDriver {
           reject(err);
           return;
         }
-        console.log('got body: ', body);
+        console.log('got body: ', response);
         const $ = self.cheerio.load(body);
         const tables = $('table');
         console.log('got tables: ', tables.length);
