@@ -26,6 +26,8 @@ class ExUaDriver {
       self.request
         .get(url)
         .query(self.URL.foreignSerials.params)
+        .accept('html')
+        .redirects(0)
         .end(function (err, response) {
         "use strict";
 
@@ -35,7 +37,7 @@ class ExUaDriver {
           return;
         }
         console.log('got response: ', response);
-        const $ = self.cheerio.load(response.body || response.text);
+        const $ = self.cheerio.load(response.text);
         const tables = $('table');
         console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
