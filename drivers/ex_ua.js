@@ -25,7 +25,7 @@ class ExUaDriver {
       console.log('html will be loaded from: ', url);
       self.request
         .get(url)
-        .query(self.URL.foreignSerials.params)
+        //.query(self.URL.foreignSerials.params)
         .accept('html')
         .redirects(0)
         .end(function (err, response) {
