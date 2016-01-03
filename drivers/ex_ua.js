@@ -8,7 +8,7 @@ class ExUaDriver {
     this.Promise = require('bluebird');
     this.URL = {
       base: 'http://www.ex.ua',
-      foreignSerials: '/ru/video/foreign_series?per=200&p=1'
+      foreignSerials: '/ru/video/foreign_series?r=23775&per=200&p=1'
     }
   }
 
