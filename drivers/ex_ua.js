@@ -8,7 +8,10 @@ class ExUaDriver {
     this.Promise = require('bluebird');
     this.URL = {
       base: 'http://www.ex.ua',
-      foreignSerials: '/ru/video/foreign_series?r=23775&per=200&p=1'
+      foreignSerials: {
+        url: '/ru/video/foreign_series?r=23775&per=200&p=1',
+        params: { r: 23755, pre: 200, p: 0 }
+      }
     }
   }
 
@@ -18,10 +21,11 @@ class ExUaDriver {
 
     return new Promise (function (resolve, reject) {
       "use strict";
-      const url = self.URL.base + self.URL.foreignSerials;
+      const url = self.URL.base + self.URL.foreignSerials.url;
       console.log('html will be loaded from: ', url);
       self.request
         .get(url)
+        .query(self.URL.foreignSerials.params)
         .end(function (err, response) {
         "use strict";
 
