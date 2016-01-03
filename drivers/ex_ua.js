@@ -19,6 +19,7 @@ class ExUaDriver {
     return new Promise (function (resolve, reject) {
       "use strict";
       const url = self.URL.base + self.URL.foreignSerials;
+      console.log('html will be loaded from: ', url);
       self.request(url, function (err, response, body) {
         "use strict";
 
@@ -27,8 +28,7 @@ class ExUaDriver {
           reject(err);
           return;
         }
-        console.log('html loaded from: ', self.URL.base + self.URL.foreignSerials);
-        console.log(body);
+        console.log('got body: ', body);
         const $ = self.cheerio.load(body);
         const tables = $('table');
         console.log('got tables: ', tables.length);
