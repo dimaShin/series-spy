@@ -9,7 +9,7 @@ class ExUaDriver {
     this.URL = {
       base: 'http://www.ex.ua',
       foreignSerials: {
-        url: '/ru/video/foreign_series?r=23775&per=200&p=1',
+        url: '/ru/video/foreign_series',
         params: { r: 23755, pre: 200, p: 0 }
       }
     }
@@ -35,7 +35,7 @@ class ExUaDriver {
           return;
         }
         console.log('got response: ', response);
-        const $ = self.cheerio.load(response.body);
+        const $ = self.cheerio.load(response.body || response.text);
         const tables = $('table');
         console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
