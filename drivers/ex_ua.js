@@ -20,7 +20,12 @@ class ExUaDriver {
       "use strict";
       const url = self.URL.base + self.URL.foreignSerials;
       console.log('html will be loaded from: ', url);
-      self.request(url, function (err, response, body) {
+      self.request({
+        url: url,
+        headers: {
+          'User-Agent': 'request'
+        }
+      }, function (err, response, body) {
         "use strict";
 
         if (err) {
