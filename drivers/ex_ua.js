@@ -3,7 +3,7 @@
 class ExUaDriver {
   constructor () {
     "use strict";
-    this.request = require('request');
+    this.request = require('superagent');
     this.cheerio = require('cheerio');
     this.Promise = require('bluebird');
     this.URL = {
@@ -20,12 +20,9 @@ class ExUaDriver {
       "use strict";
       const url = self.URL.base + self.URL.foreignSerials;
       console.log('html will be loaded from: ', url);
-      self.request({
-        url: url,
-        headers: {
-          'User-Agent': 'request'
-        }
-      }, function (err, response, body) {
+      self.request
+        .get(url)
+        .end(function (err, response) {
         "use strict";
 
         if (err) {
@@ -33,8 +30,8 @@ class ExUaDriver {
           reject(err);
           return;
         }
-        console.log('got body: ', response.socket._httpMessage);
-        const $ = self.cheerio.load(body);
+        console.log('got response: ', response.socket._httpMessage);
+        const $ = self.cheerio.load(response.body);
         const tables = $('table');
         console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
