@@ -39,7 +39,7 @@ class ExUaDriver {
           reject(err);
           return;
         }
-        console.log('got response: ', response);
+        console.log('got response: ', response.req);
         const $ = self.cheerio.load(response.text);
         const tables = $('table');
         console.log('got tables: ', tables.length);
