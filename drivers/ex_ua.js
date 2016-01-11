@@ -3,14 +3,17 @@
 class ExUaDriver {
   constructor () {
     "use strict";
-    this.request = require('superagent');
+    this.request = require('request');
     this.cheerio = require('cheerio');
     this.Promise = require('bluebird');
+
+    //require('superagent-proxy')(this.request);
+
     this.URL = {
       base: 'http://www.ex.ua',
       foreignSerials: {
         url: '/ru/video/foreign_series',
-        params: { r: 23755, pre: 200, p: 0 }
+        params: { pre: 200, p: 0, r: 23775 }
       }
     }
   }
@@ -23,25 +26,26 @@ class ExUaDriver {
       "use strict";
       const url = self.URL.base + self.URL.foreignSerials.url;
       console.log('html will be loaded from: ', url);
-      self.request
-        .get(url)
-        .set('Cookie', 'ccid=6142029302196691130; mail_show=0; _ym_uid=1446579134698961487; uper=200; _ga=GA1.2.1692449598.1430052637; lastAds=1451751689; lastAfterPaus=1451751694; udpr=1')
-        .set('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
-        .set('Upgrade-Insecure-Requests', 1)
-        //.query(self.URL.foreignSerials.params)
-        .accept('html')
-        .redirects(0)
-        .end(function (err, response) {
+      self.request({
+        url: url,
+        jar: true,
+        proxy: 'http://46.63.27.10:8080',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36',
+          'Cookie': 'uper=200'
+        }
+      }, (err, response) => {
         "use strict";
 
         if (err) {
-          console.log(err);
+          console.log('error: ', err);
           reject('got response error: ', err.req);
           return;
         }
-        console.log('got response: ', response.req);
-        const $ = self.cheerio.load(response.text);
-        const tables = $('table');
+        //response
+        const $ = self.cheerio.load(response.body);
+        //const cards = ExUaDriver._toArray( $('table.include_0 td') );
+        const tables = ExUaDriver._toArray( $('table') );
         console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
         const match = [];
@@ -128,7 +132,7 @@ class ExUaDriver {
 
   static _getEpisode (title) {
     "use strict";
-    const episodeRegExp = new RegExp('(Серия|Cерия)\\s*(\\d*)\\s*(-\\s*(\\d*))?');
+    const episodeRegExp = new RegExp('(Серия|Cерия|Серии)\\s*(\\d*)\\s*(-\\s*(\\d*))?');
     const episodeMatch = title.match(episodeRegExp);
 
     if (!episodeMatch) {

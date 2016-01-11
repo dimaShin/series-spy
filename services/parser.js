@@ -4,11 +4,14 @@ class Parser {
   constructor () {
     "use strict";
     const ExUA = require('../drivers/ex_ua');
+    const Kinosvit = require('../drivers/kinosvit');
 
     this.exUa = new ExUA();
+    this.kinosvit = new Kinosvit();
   }
 
   parse (opt) {
+    console.log(opt);
     "use strict";
 
     const driver = opt.driver;
