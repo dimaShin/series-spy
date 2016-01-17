@@ -1,12 +1,33 @@
 'use strict';
 
+const express = require('express');
+const app = express();
+
 const nodemailer = require('nodemailer');
-const CronJob = require('cron').CronJob;
 
 
 const parser = require('./services/parser');
+const CronJob = require('./services/cron');
+
 const exOpts = require('./drivers/ex_rules');
 const kinosvitOpts = require('./drivers/kinosvit_rules');
+
+app.use(express.static(__dirname + '/public'));
+
+app.set('views', __dirname + '/public/views');
+app.set('view engine', 'jade');
+
+app.get('/', (req, res) => {
+  return res.render('index', { title: 'Hey', message: 'Hello there!'});
+});
+
+app.listen(3000, err => {
+  if (err) {
+    return console.log(err);
+  }
+
+  console.log('Start listening 3000');
+})
 
 
 //var job = new CronJob({
@@ -35,17 +56,17 @@ const kinosvitOpts = require('./drivers/kinosvit_rules');
 //  timeZone: 'Europe/Kiev'
 //});
 
-console.log('start parsing');
-parser.parse(exOpts).then(result => {
-  if (!result || !result.length) {
-    console.log('nothing new');
-    return;
-  }
-
-  console.log('found ' + result.length + ' new series');
-  const mailer = require('./services/mailer');
-  mailer.send({
-    tplPath: __dirname + '/email.hbs',
-    data: result
-  });
-});
+//console.log('start parsing');
+//parser.parse(exOpts).then(result => {
+//  if (!result || !result.length) {
+//    console.log('nothing new');
+//    return;
+//  }
+//
+//  console.log('found ' + result.length + ' new series');
+//  const mailer = require('./services/mailer');
+//  mailer.send({
+//    tplPath: __dirname + '/email.hbs',
+//    data: result
+//  });
+//});
