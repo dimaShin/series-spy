@@ -5,19 +5,9 @@ import ReactDom from "react-dom";
 
 import Greeting from "./greeting";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log('starting app');
-  }
+import App from './components/app/app';
 
-  render () {
-    return (
-      'Hi there!'
-    )
-  }
-}
+const app = React.createElement(App, {name: 'Series Spy'});
 
-
-ReactDom.render(App,
+ReactDom.render(app,
   document.getElementById('root'));

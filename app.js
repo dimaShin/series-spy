@@ -12,6 +12,8 @@ const CronJob = require('./services/cron');
 const exOpts = require('./drivers/ex_rules');
 const kinosvitOpts = require('./drivers/kinosvit_rules');
 
+const PORT = 8081;
+
 app.use(express.static(__dirname + '/public'));
 
 app.set('views', __dirname + '/public/views');
@@ -21,13 +23,13 @@ app.get('/', (req, res) => {
   return res.render('index', { title: 'Hey', message: 'Hello there!'});
 });
 
-app.listen(3000, err => {
+app.listen(PORT, err => {
   if (err) {
     return console.log(err);
   }
 
-  console.log('Start listening 3000');
-})
+  console.log('Start listening ' + PORT);
+});
 
 
 //var job = new CronJob({
