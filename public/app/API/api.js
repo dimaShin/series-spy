@@ -11,7 +11,7 @@ function ApiService ($injector) {
   const $resource = $injector.get('$resource');
 
   return {
-    rules: $resource('http://127.0.0.1:8081/api/rules/:id', {id: '@id'}, {
+    rules: $resource('http://127.0.0.1:8081/api/rules/:_id', {_id: '@_id'}, {
       put: {
         method: 'put'
       }

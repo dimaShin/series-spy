@@ -2,16 +2,18 @@
 
 const express = require('express');
 const app = express();
-const fs = require('fs');
+
+const db = require('./app/lib/mongodb');
 
 const nodemailer = require('nodemailer');
+const router = require('./app/lib/router');
 
 
-const parser = require('./services/parser');
-const CronJob = require('./services/cron');
-
-const exOpts = require('./drivers/ex_rules');
-const kinosvitOpts = require('./drivers/kinosvit_rules');
+//const parser = require('./app/services/parser');
+//const CronJob = require('./app/services/cron');
+//
+//const exOpts = require('./app/drivers/ex_rules');
+//const kinosvitOpts = require('./app/drivers/kinosvit_rules');
 
 
 const PORT = 8081;
@@ -21,7 +23,9 @@ app.get('/', (req, res) => {
 });
 
 app.use(express.static(__dirname + '/public/dist'));
+app.use(router);
 
+app.set('db', db);
 
 app.listen(PORT, err => {
   if (err) {

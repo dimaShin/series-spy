@@ -5,14 +5,24 @@
   </md-subheader>
 
 
-  <md-list-item ng-repeat="rule in AppCtrl.rules track by rule.id">
+  <md-list-item ng-repeat="rule in AppCtrl.rules track by rule._id">
     <p ng-bind="rule.title"></p>
     <button
-        class="md-secondary-container md-icon-button md-button md-ink-ripple"
+        class="md-icon-button md-button md-ink-ripple"
         type="button"
-        ng-click="AppCtrl.editRule($event)">
+        ng-click="AppCtrl.editRule($event, rule)">
       <ng-md-icon
-          icon="description">
+          icon="settings_applications">
+      </ng-md-icon>
+      <div class="md-ripple-container"></div>
+    </button>
+    <button
+        class="md-icon-button md-button md-ink-ripple"
+        type="button"
+        ng-click="AppCtrl.deleteRule($event, rule)">
+      <ng-md-icon
+          style="fill: #f00"
+          icon="delete">
       </ng-md-icon>
       <div class="md-ripple-container"></div>
     </button>

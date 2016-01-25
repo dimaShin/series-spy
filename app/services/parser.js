@@ -3,8 +3,8 @@ class Parser {
 
   constructor () {
     "use strict";
-    const ExUA = require('../drivers/ex_ua');
-    const Kinosvit = require('../drivers/kinosvit');
+    const ExUA = require('./ex_ua');
+    const Kinosvit = require('./kinosvit');
 
     this.exUa = new ExUA();
     this.kinosvit = new Kinosvit();
