@@ -2,6 +2,7 @@
 
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
 const nodemailer = require('nodemailer');
 
@@ -12,16 +13,15 @@ const CronJob = require('./services/cron');
 const exOpts = require('./drivers/ex_rules');
 const kinosvitOpts = require('./drivers/kinosvit_rules');
 
+
 const PORT = 8081;
 
-app.use(express.static(__dirname + '/public'));
-
-app.set('views', __dirname + '/public/views');
-app.set('view engine', 'jade');
-
 app.get('/', (req, res) => {
-  return res.render('index', { title: 'Hey', message: 'Hello there!'});
+  res.sendFile(__dirname + '/public/dist/index.html');
 });
+
+app.use(express.static(__dirname + '/public/dist'));
+
 
 app.listen(PORT, err => {
   if (err) {
@@ -29,6 +29,19 @@ app.listen(PORT, err => {
   }
 
   console.log('Start listening ' + PORT);
+});
+
+app.get('/api/rules', (req, res) => {
+  res.send([
+    {
+      id: 0,
+      title: 'one'
+    },
+    {
+      id: 1,
+      title: 'two'
+    }
+  ]);
 });
 
 

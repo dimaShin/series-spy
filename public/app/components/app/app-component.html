@@ -1,0 +1,21 @@
+<md-list>
+
+  <md-subheader class="md-no-sticky">
+    Existing rules
+  </md-subheader>
+
+
+  <md-list-item ng-repeat="rule in AppCtrl.rules track by rule.id">
+    <p ng-bind="rule.title"></p>
+    <button
+        class="md-secondary-container md-icon-button md-button md-ink-ripple"
+        type="button"
+        ng-click="AppCtrl.editRule($event)">
+      <ng-md-icon
+          icon="description">
+      </ng-md-icon>
+      <div class="md-ripple-container"></div>
+    </button>
+  </md-list-item>
+
+</md-list>

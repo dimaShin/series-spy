@@ -1,15 +1,13 @@
-"use strict";
+import angular from 'angular';
+import ngRoute from 'angular-route';
+import ngAnimate from 'angular-animate';
 
-import React from "react";
-import ReactDom from "react-dom";
+import config from './config';
+import components from './components';
 
-import App from './components/app/app';
-
-require("babel-core/register");
-require("babel-polyfill");
-
-
-const app = React.createElement(App, {name: 'Series Spy'});
-
-ReactDom.render(app,
-  document.getElementById('root'));
+angular.module('app', [
+  ngRoute,
+  ngAnimate,
+  config,
+  components
+]);
