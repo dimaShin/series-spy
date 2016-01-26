@@ -7,10 +7,16 @@
 
 
     <md-list-item ng-repeat="rule in AppCtrl.rules track by rule._id">
-      <p md-ink-ripple="#03A9F4"
-          ng-click="this.rule.expanded = !this.rule.expanded"
-          ng-bind="rule.title">
-      </p>
+      <div layout="column">
+        <a md-ink-ripple="#03A9F4"
+           ng-click="rule.expanded = !rule.expanded">
+          <h2 ng-bind="rule.title"></h2>
+        </a>
+        <div ng-if="this.rule.expanded">
+          Bo-Bo-Bo
+        </div>
+      </div>
+
 
       <md-button
           aria-label="Save changes"
