@@ -6,28 +6,29 @@
     </md-subheader>
 
 
-    <md-list-item ng-repeat="rule in AppCtrl.rules track by rule._id"
-                  ng-click="this.rule.expanded = !this.rule.expanded">
-      <p ng-bind="rule.title"></p>
+    <md-list-item ng-repeat="rule in AppCtrl.rules track by rule._id">
+      <p md-ink-ripple="#03A9F4"
+          ng-click="this.rule.expanded = !this.rule.expanded"
+          ng-bind="rule.title">
+      </p>
+
       <md-button
           aria-label="Save changes"
           class="md-fab md-mini md-primary"
-          ng-click="AppCtrl.editRule($event, rule)">
+          ng-click="AppCtrl.onSave($event, rule)">
         <ng-md-icon
             style="fill: #fff"
             icon="save">
         </ng-md-icon>
-        <!--<div class="md-ripple-container"></div>-->
       </md-button>
       <md-button
           aria-label="Delete rule"
           class="md-fab md-mini md-warn"
-          ng-click="AppCtrl.deleteRule($event, rule)">
+          ng-click="AppCtrl.onDelete($event, rule)">
         <ng-md-icon
             style="fill: #fff"
             icon="delete">
         </ng-md-icon>
-        <!--<div class="md-ripple-container"></div>-->
       </md-button>
       <md-divider ng-if="!$last"></md-divider>
     </md-list-item>

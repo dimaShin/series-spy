@@ -2,18 +2,28 @@
 
 $main-color: #20ce99;
 $container-md-width: 800px;
+$text-row-height: 52px;
+$text-row-padding: 0 10px;
 
-@media (max-width: 800px) {
+@media (max-width: 799px) {
   .content-container {
-    width: 100%;
+    width: calc(100% - 20px);
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 10px;
   }
 }
-@media (min-width: 801px) {
+@media (min-width: 800px) {
   .content-container {
     width: $container-md-width;
     margin: 0 auto;
     padding: 0 15px;
   }
+}
+
+md-list-item > p {
+  line-height: $text-row-height;
+  padding: $text-row-padding
+}
+:focus {
+  outline-color: transparent;
 }
