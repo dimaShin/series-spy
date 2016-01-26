@@ -1,6 +1,7 @@
+require('./app.scss');
+
 import angular from 'angular';
 import angularMaterial from 'angular-material';
-require('angular-material/angular-material.scss');
 import ngMdIcons from 'angular-material-icons';
 import template from './app-component.html';
 

@@ -1,0 +1,12 @@
+@function rem($multiplier) {
+  $font-size: 10px;
+  @return $multiplier * $font-size;
+}
+
+// Fab buttons
+$button-fab-line-height: rem(5.200) !default;
+$button-fab-mini-width: rem(4.00) !default;
+$button-fab-mini-height: rem(4.00) !default;
+$button-fab-mini-line-height: rem(5.200) !default;
+
+@import "./../../../../node_modules/angular-material/angular-material";

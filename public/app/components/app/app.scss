@@ -1,0 +1,19 @@
+@import "custom-material";
+
+$main-color: #20ce99;
+$container-md-width: 800px;
+
+@media (max-width: 800px) {
+  .content-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+@media (min-width: 801px) {
+  .content-container {
+    width: $container-md-width;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
