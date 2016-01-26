@@ -8,7 +8,6 @@ module.exports.get = async(function (req, res) {
   const Rules = db.model('ExRules');
   const rules = await(Rules.find().exec());
 
-  console.log('rules: ', rules);
   res.send(rules);
 });
 
@@ -16,10 +15,14 @@ module.exports.delete = async(function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
-  let _id = req.params._id;
 
-  const rule = await(Rules.remove({_id: _id}).exec());
-  console.log('rule: ', rule);
+  console.log('deleting rule: ', req.params._id);
+  await(Rules.findByIdAndRemove(req.params._id, err => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(401);
+    }
+  }));
 
   res.sendStatus(200);
 });

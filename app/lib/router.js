@@ -10,7 +10,7 @@ const ExCtrl = require('../controllers/ex');
     middleware: [ExCtrl.get]
   },
   {
-    path: '/api/rules/:id',
+    path: '/api/rules/:_id',
     method: 'delete',
     middleware: [ExCtrl.delete]
   }

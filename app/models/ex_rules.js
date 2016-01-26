@@ -9,3 +9,10 @@ const ExRules = new Schema({
 });
 
 mongoose.model('ExRules', ExRules);
+//
+//const seeds = require('./ex_rules_seeds');
+//seeds.map(seed => {
+//  "use strict";
+//
+//  mongoose.model('ExRules').create(seed);
+//});

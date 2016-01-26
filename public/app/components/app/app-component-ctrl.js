@@ -37,6 +37,9 @@ AppCtrl.prototype._deleteRule = function (rule) {
         .parent(window.body)
         .hideDelay(1000)
     );
+
+    this.rules.splice(this.rules.indexOf(rule), 1);
+
   }).catch(err => {
     this.$mdToast.show(
       this.$mdToast.simple()
