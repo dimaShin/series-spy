@@ -63,6 +63,12 @@
 
 <md-dialog-actions>
   <md-button
+    class="md-raised"
+    ng-click="RDCtrl.cancel($event)"
+    aria-label="Cancel">
+    Cancel
+  </md-button>
+  <md-button
     class="md-raised md-accent btn-wide"
     ng-click="RDCtrl.save($event)"
     aria-label="Save Show">
