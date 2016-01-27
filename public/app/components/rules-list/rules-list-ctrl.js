@@ -18,9 +18,6 @@ class RulesList {
 
   addRule ($event) {
 
-    //const template = this.$complile('<rule-dialog />')(this.$rootScope)[0];
-    //console.log(template);
-
     this.$mdDialog.show({
       template: '<rule-dialog />',
       parent: angular.element(document.body),
@@ -28,10 +25,8 @@ class RulesList {
       clickOutsideToClose:true,
       focusOnOpen: false
     })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
+    .then(response => {
+      this.rules.push(response);
     });
   }
 }

@@ -2,24 +2,24 @@
   <div layout-xs="column"
        layout-sm="row"
        class="flex-1">
-    <h2 ng-bind="rule.title"></h2>
+    <h2 ng-bind="RowCtrl.rule.title"></h2>
     <div class="flex-v-centered sm-pull-right m-r-20">
       <form name="RowCtrl.form">
         <md-input-container input-width="2">
           <label>Season</label>
           <input
               name="season"
-              ng-change="RowCtrl.onChange($event, rule)"
+              ng-change="RowCtrl.onChange($event, RowCtrl.rule)"
               type="number"
-              ng-model="rule.season">
+              ng-model="RowCtrl.rule.season">
         </md-input-container>
         <md-input-container input-width="2">
           <label>Episode</label>
           <input
               name="episode"
-              ng-change="RowCtrl.onChange($event, rule)"
+              ng-change="RowCtrl.onChange($event, RowCtrl.rule)"
               type="number"
-              ng-model="rule.episode ">
+              ng-model="RowCtrl.rule.episode ">
         </md-input-container>
       </form>
     </div>
@@ -27,7 +27,7 @@
   <md-button
       aria-label="Delete rule"
       class="md-fab md-mini md-warn"
-      ng-click="RowCtrl.onDelete($event, rule)">
+      ng-click="RowCtrl.onDelete($event, RowCtrl.rule)">
     <ng-md-icon
         style="fill: #fff"
         icon="delete">

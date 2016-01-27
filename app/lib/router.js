@@ -18,8 +18,16 @@ const ExCtrl = require('../controllers/ex');
     path: '/api/rules/:_id',
     method: 'put',
     middleware: [ExCtrl.update]
+  },
+  {
+    path: '/api/rules',
+    method: 'post',
+    middleware: [ExCtrl.create]
   }
-]
-  .forEach(function(route) {
-    router[route.method].apply(router, _.flatten([route.path, route.middleware]));
-  });
+].forEach(function(route) {
+  router[route.method].apply(router, _.flatten([route.path, route.middleware]));
+});
+
+
+
+

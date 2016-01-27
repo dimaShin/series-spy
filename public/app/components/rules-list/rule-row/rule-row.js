@@ -14,11 +14,13 @@ export default angular.module('components.rule-row', [
     return {
       restrict: 'E',
       scope: {
-        rule: '='
+        rule: '=',
+        rules: '='
       },
       template,
       controller,
-      controllerAs
+      controllerAs,
+      bindToController: true
     }
 
   }).name;
