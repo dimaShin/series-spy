@@ -4,6 +4,7 @@ $main-color: #20ce99;
 $container-md-width: 800px;
 $text-row-height: 52px;
 $text-row-padding: 0 10px;
+$layout-breakpoint-xs: 600px;
 
 @media (max-width: 799px) {
   .content-container {
@@ -37,8 +38,12 @@ md-list-item > p {
   flex: 1;
 }
 
-.flex-h-end {
-  justify-content: flex-end;
+@media (min-width: $layout-breakpoint-xs) {
+  .sm-pull-right {
+    justify-content: flex-end;
+    display: flex;
+    flex: 1;
+  }
 }
 
 *.m-r-20 {
