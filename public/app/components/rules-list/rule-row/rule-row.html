@@ -4,16 +4,20 @@
        class="flex-1">
     <h2 ng-bind="rule.title"></h2>
     <div class="flex-v-centered sm-pull-right m-r-20">
-      <form name="form">
+      <form name="RowCtrl.form">
         <md-input-container input-width="2">
           <label>Season</label>
           <input
+              name="season"
+              ng-change="RowCtrl.onChange($event, rule)"
               type="number"
               ng-model="rule.season">
         </md-input-container>
         <md-input-container input-width="2">
           <label>Episode</label>
           <input
+              name="episode"
+              ng-change="RowCtrl.onChange($event, rule)"
               type="number"
               ng-model="rule.episode ">
         </md-input-container>

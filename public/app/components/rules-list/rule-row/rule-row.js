@@ -4,7 +4,10 @@ import inputWidth from 'helpers/input-width';
 
 import RulesListCtrl, { controller, controllerAs } from './rule-row-ctrl';
 
-export default angular.module('components.rule-row', [ inputWidth ])
+export default angular.module('components.rule-row', [
+  RulesListCtrl,
+  inputWidth
+])
   .directive('ruleRow', function () {
     "use strict";
 

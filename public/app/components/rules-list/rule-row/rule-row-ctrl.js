@@ -10,6 +10,19 @@ class RuleRow {
     this.$mdToast = $injector.get('$mdToast');
   }
 
+  onChange ($event, rule) {
+    console.log('change');
+    rule.$put().catch(err => {
+      this.$mdToast.show(
+        this.$mdToast.simple()
+          .textContent(err.data)
+          .position('right top')
+          .parent(window.body)
+          .hideDelay(5000)
+      );
+    })
+  }
+
   onDelete ($event, rule) {
     const confirm = this.$mdDialog.confirm()
       .title('Are you sure you want to delete ' + rule.title)
@@ -45,10 +58,10 @@ class RuleRow {
   }
 }
 
-angular.module('components.rule-row.ctrl', [])
-  .controller('AppController', RuleRow);
+export default angular.module('components.rule-row.ctrl', [])
+  .controller('RowController', RuleRow)
+  .name;
 
-export default 'components.rule-row.ctrl';
-export const controller = 'AppController';
+export const controller = 'RowController';
 export const controllerAs = 'RowCtrl';
 
