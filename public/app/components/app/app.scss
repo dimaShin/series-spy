@@ -5,6 +5,7 @@ $container-md-width: 800px;
 $text-row-height: 52px;
 $text-row-padding: 0 10px;
 $layout-breakpoint-xs: 600px;
+$dialog-md-width: 500px;
 
 @media (max-width: 799px) {
   .content-container {
@@ -50,6 +51,20 @@ md-list-item > p {
   margin-right: 20px;
 }
 
+*.p-20 {
+  padding: 20px;
+}
+
 md-input-container *.md-errors-spacer {
   min-height: 0;
+}
+
+.dialog-md-toolbar {
+  width: $dialog-md-width;
+  padding: 0 10px;
+}
+
+*.dialog-md-toolbar *.dialog-header
+{
+  margin: 14px 0;
 }

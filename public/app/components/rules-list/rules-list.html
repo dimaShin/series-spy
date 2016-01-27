@@ -1,12 +1,23 @@
-<md-list>
+<md-toolbar md-scroll-shrink>
+  <div class="md-toolbar-tools">
+    <h2>
+      <span>Favorite Shows</span>
+    </h2>
+    <span flex></span>
+    <md-button
+        class="md-raised"
+        ng-click="ListCtrl.addRule($event)"
+        aria-label="Add New Show">
+      Add New Show
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content flex>
+  <md-list>
 
-  <md-subheader class="md-no-sticky">
-    Existing rules
-  </md-subheader>
+    <rule-row rule="rule"
+              ng-repeat="rule in ListCtrl.rules track by rule._id">
+    </rule-row>
 
-
-  <rule-row rule="rule"
-            ng-repeat="rule in ListCtrl.rules track by rule._id">
-  </rule-row>
-
-</md-list>
+  </md-list>
+</md-content>

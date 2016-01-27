@@ -1,0 +1,53 @@
+<md-dialog-content>
+  <md-toolbar class="md-primary dialog-md-toolbar">
+    <h5 class="dialog-header">Enter Show details</h5>
+  </md-toolbar>
+  <md-content class="p-20">
+    <form name="RDCtrl.form" layout="column">
+      <!--Title-->
+      <md-input-container>
+        <label>Show Title</label>
+        <input type="text"
+               name="title"
+               ng-model="RDCtrl.rule.title"
+               required>
+      </md-input-container>
+      <!--En-->
+      <md-input-container>
+        <label>English Name</label>
+        <input type="text"
+               name="en"
+               ng-model="RDCtrl.rule.en"
+               required>
+      </md-input-container>
+      <!--Ru-->
+      <md-input-container>
+        <label>Russian Name</label>
+        <input type="text"
+               name="en"
+               ng-model="RDCtrl.rule.ru"
+               required>
+      </md-input-container>
+      <div layout="row">
+        <!--Season-->
+        <md-input-container input-width="2">
+          <label>Season</label>
+          <input type="number"
+                 name="season"
+                 ng-model="RDCtrl.rule.season">
+        </md-input-container>
+        <!--Episode-->
+        <md-input-container input-width="2">
+          <label>Episode</label>
+          <input type="number"
+                 name="episode"
+                 ng-model="RDCtrl.rule.episode">
+        </md-input-container>
+      </div>
+
+    </form>
+  </md-content>
+</md-dialog-content>
+<md-dialog-actions>
+  actions
+</md-dialog-actions>
