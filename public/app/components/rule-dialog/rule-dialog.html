@@ -11,6 +11,10 @@
                name="title"
                ng-model="RDCtrl.rule.title"
                required>
+
+        <div ng-messages="RDCtrl.form.title.$error">
+          <div ng-message="required">Please, set title!</div>
+        </div>
       </md-input-container>
       <!--En-->
       <md-input-container>
@@ -19,14 +23,22 @@
                name="en"
                ng-model="RDCtrl.rule.en"
                required>
+
+        <div ng-messages="RDCtrl.form.en.$error">
+          <div ng-message="required">Please, set show name in english!</div>
+        </div>
       </md-input-container>
       <!--Ru-->
       <md-input-container>
         <label>Russian Name</label>
         <input type="text"
-               name="en"
+               name="ru"
                ng-model="RDCtrl.rule.ru"
                required>
+
+        <div ng-messages="RDCtrl.form.ru.$error">
+          <div ng-message="required">Please, set show name in russian!</div>
+        </div>
       </md-input-container>
       <div layout="row">
         <!--Season-->
@@ -48,6 +60,13 @@
     </form>
   </md-content>
 </md-dialog-content>
+
 <md-dialog-actions>
-  actions
+  <md-button
+    class="md-raised md-accent btn-wide"
+    ng-click="RDCtrl.save($event)"
+    aria-label="Save Show">
+    Save Show
+  </md-button>
+
 </md-dialog-actions>

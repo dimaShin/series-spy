@@ -1,28 +1,33 @@
 import angular from 'angular';
 import API from 'api';
+import _ from 'lodash';
+import FormHelper from 'helpers/form';
 
 class RuleDialogCtrl {
   static $inject = ['$injector'];
 
   constructor ($injector) {
     this.$mdDialog = $injector.get('$mdDialog');
-    this.Rules = $injector.get('API').rules;
+    this.$mdToast = $injector.get('$mdToast');
+    this.API = $injector.get('API');
     this.rule = {
       season: 1,
       episode: 1
     }
   }
 
-  close () {
+  save () {
 
     if (this.form.$invalid) {
-      this.form.$setDirty();
+      this.form.$showErrors();
       return;
     }
 
-    this.Rules.save(this.rule).then(rule => {
+    this.API.rules.save(this.rule).$promise
+    .then(rule => {
       this.$mdDialog.hide(rule);
-    }).catch(err => {
+    })
+    .catch(err => {
       this.$mdToast.show(
         this.$mdToast.simple()
           .textContent(err.data)
@@ -30,7 +35,7 @@ class RuleDialogCtrl {
           .parent(window.body)
           .hideDelay(5000)
       );
-    })
+    });
   }
 
   cancel () {
@@ -39,7 +44,7 @@ class RuleDialogCtrl {
 }
 
 export default angular.module('components.rule-dialog-ctrl', [
-  API
+  API, FormHelper
 ]).controller('RuleDialogCtrl', RuleDialogCtrl).name;
 
 export const controller = 'RuleDialogCtrl';
