@@ -1,0 +1,33 @@
+<md-list-item>
+  <div layout-xs="column"
+       layout-sm="row"
+       class="flex-1">
+    <h2 ng-bind="rule.title"></h2>
+    <div class="flex-v-centered flex-h-end m-r-20">
+      <form name="form">
+        <md-input-container input-width="2">
+          <label>Season</label>
+          <input
+              type="number"
+              ng-model="rule.season">
+        </md-input-container>
+        <md-input-container input-width="2">
+          <label>Episode</label>
+          <input
+              type="number"
+              ng-model="rule.episode ">
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+  <md-button
+      aria-label="Delete rule"
+      class="md-fab md-mini md-warn"
+      ng-click="RowCtrl.onDelete($event, rule)">
+    <ng-md-icon
+        style="fill: #fff"
+        icon="delete">
+    </ng-md-icon>
+  </md-button>
+  <md-divider ng-if="!$last"></md-divider>
+</md-list-item>

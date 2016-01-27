@@ -1,9 +1,11 @@
 "use strict";
 
-var webpack           = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanPlugin       = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack           = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanPlugin       = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+
 
 module.exports = {
   devtool: 'source-map',
@@ -42,6 +44,14 @@ module.exports = {
 
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap') },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') }
+    ]
+  },
+  resolve: {
+    root: [
+      path.resolve('./public/app'),
+      path.resolve('./public/app/components'),
+      path.resolve('./public/app/API'),
+      path.resolve( './public/app/config')
     ]
   }
 };

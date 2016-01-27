@@ -7,10 +7,13 @@ import template from './app-component.html';
 
 import AppCtrl, { controller, controllerAs } from './app-component-ctrl';
 
-angular.module('components.app', [
+import RulesList from './../rules-list/rules-list';
+
+export default angular.module('components.app', [
   angularMaterial,
   AppCtrl,
-  ngMdIcons
+  ngMdIcons,
+  RulesList
 ])
   .directive('appComponent', function () {
     "use strict";
@@ -22,6 +25,4 @@ angular.module('components.app', [
       controllerAs
     }
 
-  });
-
-export default 'components.app';
+  }).name;

@@ -1,22 +1,17 @@
 'use strict';
-
 const express = require('express');
 const app = express();
-
 const db = require('./app/lib/mongodb');
-
 const nodemailer = require('nodemailer');
 const router = require('./app/lib/router');
-
-
-//const parser = require('./app/services/parser');
-//const CronJob = require('./app/services/cron');
-//
-//const exOpts = require('./app/drivers/ex_rules');
-//const kinosvitOpts = require('./app/drivers/kinosvit_rules');
-
-
 const PORT = 8081;
+
+
+//const webpackDevMiddleware = require('webpack-dev-middleware');
+//const webpackConfig = require('./webpack.config');
+//const webpack = require('webpack');
+//app.use(webpackDevMiddleware(compiler));
+//const compiler = webpack(webpackConfig);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/dist/index.html');
@@ -47,45 +42,3 @@ app.get('/api/rules', (req, res) => {
     }
   ]);
 });
-
-
-//var job = new CronJob({
-//  cronTime: '00 25 04,20 * * *',
-//  onTick () {
-//    console.log('start parsing');
-//    parser.parse(exOpts).then(result => {
-//      if (!result || !result.length) {
-//        console.log('nothing new');
-//        return;
-//      }
-//
-//      console.log('found ' + result.length + ' new series');
-//      const mailer = require('./services/mailer');
-//      mailer.send({
-//        tplPath: __dirname + '/email.hbs',
-//        data: result
-//      });
-//    });
-//  },
-//  onComplete () {
-//    console.log('closing job');
-//  },
-//  start: true,
-//  runOnInit: true,
-//  timeZone: 'Europe/Kiev'
-//});
-
-//console.log('start parsing');
-//parser.parse(exOpts).then(result => {
-//  if (!result || !result.length) {
-//    console.log('nothing new');
-//    return;
-//  }
-//
-//  console.log('found ' + result.length + ' new series');
-//  const mailer = require('./services/mailer');
-//  mailer.send({
-//    tplPath: __dirname + '/email.hbs',
-//    data: result
-//  });
-//});

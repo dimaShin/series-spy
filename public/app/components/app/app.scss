@@ -27,3 +27,24 @@ md-list-item > p {
 :focus {
   outline-color: transparent;
 }
+.flex-1 {
+  flex: 1;
+}
+
+.flex-v-centered {
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.flex-h-end {
+  justify-content: flex-end;
+}
+
+*.m-r-20 {
+  margin-right: 20px;
+}
+
+md-input-container *.md-errors-spacer {
+  min-height: 0;
+}
