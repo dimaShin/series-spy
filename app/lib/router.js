@@ -13,6 +13,11 @@ const ExCtrl = require('../controllers/ex');
     path: '/api/rules/:_id',
     method: 'delete',
     middleware: [ExCtrl.delete]
+  },
+  {
+    path: '/api/rules/:_id',
+    method: 'put',
+    middleware: [ExCtrl.update]
   }
 ]
   .forEach(function(route) {

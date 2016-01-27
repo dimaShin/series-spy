@@ -1,6 +1,7 @@
 
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
+const _ = require('lodash');
 
 module.exports.get = async(function (req, res) {
   "use strict";
@@ -25,4 +26,20 @@ module.exports.delete = async(function (req, res) {
   }));
 
   res.sendStatus(200);
+});
+
+module.exports.update = async(function (req, res) {
+  "use strict";
+  const db = req.app.get('db');
+  const Rules = db.model('ExRules');
+  const data = _.pick(req.body, ['title', 'season', 'episode']);
+
+  Rules.findByIdAndUpdate(req.params._id,
+    { $set: data },
+    { new: true },
+    (err, rule) => {
+      if (err) return res.sendStatus(402);
+
+      res.send(rule);
+    });
 });

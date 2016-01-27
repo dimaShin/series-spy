@@ -11,7 +11,6 @@ class RuleRow {
   }
 
   onChange ($event, rule) {
-    console.log('change');
     rule.$put().catch(err => {
       this.$mdToast.show(
         this.$mdToast.simple()

@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const db = require('./app/lib/mongodb');
 const nodemailer = require('nodemailer');
 const router = require('./app/lib/router');
@@ -17,9 +18,9 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/dist/index.html');
 });
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public/dist'));
 app.use(router);
-
 app.set('db', db);
 
 app.listen(PORT, err => {
