@@ -70,8 +70,6 @@ module.exports.parse = function (req, res) {
       rule.regExp = new RegExp(rule.title.replace(/\s/g, '\\s*'), 'i');
     }
 
-
-
     console.log(ruRegExp, engRegExp, rule.regExp);
 
     return rule;
@@ -79,10 +77,22 @@ module.exports.parse = function (req, res) {
 
   exDriver.foreignSerials(rules)
     .then(matches => {
-      res.send(matches);
+      clearTimeout(idleWatcher);
+      res.send({
+        status: 'OK',
+        result: matches
+      });
     })
     .catch(err => {
+      clearTimeout(idleWatcher);
       res.status(400);
       res.send(err);
     });
+
+  const idleTime = 5000;
+  const idleWatcher = setTimeout(() => {
+    res.send({
+      status: false
+    });
+  }, idleTime);
 };

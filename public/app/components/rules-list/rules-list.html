@@ -22,9 +22,24 @@
 
   </md-list>
 
-  <md-button class="md-raised md-primary btn-wide"
-             ng-click="ListCtrl.startParsing()"
-             aria-label="Start Parsing">
-    Start Parsing
-  </md-button>
+  <div layout="row">
+    <md-button class="md-raised md-primary btn-wide"
+               ng-hide="ListCtrl.parsing.status"
+               ng-click="ListCtrl.startParsing()"
+               aria-label="Start Parsing">
+      Start Parsing
+    </md-button>
+    <div class="childs-v-center" >
+      <span ng-show="ListCtrl.parsing.status === 'WAITING_SOCKET'">
+      Parsing will take more time. Let's wait for it a bit more.
+    </span>
+    </div>
+
+    <md-progress-circular
+        ng-show="ListCtrl.parsing.status"
+        md-mode="indeterminate">
+    </md-progress-circular>
+
+  </div>
+
 </md-content>

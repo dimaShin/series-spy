@@ -12,6 +12,7 @@ class RulesList {
     this.$mdDialog = $injector.get('$mdDialog');
     this.$mdToast = $injector.get('$mdToast');
     this.$rootScope = $injector.get('$rootScope');
+    this.$timout = $injector.get('$timeout');
 
     this.rules = this.API.rules.query();
     this.parsing = {
@@ -39,14 +40,24 @@ class RulesList {
     this.parsing.status = 'IN_PROGRESS';
 
     promise.then(response => {
-      this.parsing.status = false;
-
-      if (response.status === 'OK') {
-        this.parsing.result = response.parseResult;
-        this.parsing.status = 'READY';
+      if (response.data.status === 'OK') {
+        this.parsing.result = response.data.result;
+        this.parsing.status = false;
         return;
       }
       this.parsing.status = 'WAITING_SOCKET';
+
+      this.$timout(() => {
+        this.parsing.status = false;
+        const toast = this.$mdToast.simple()
+        .textContent('Parsing too long. Closing it.')
+        .position('right top')
+        .parent(window.body)
+        .theme('error-toast')
+        .hideDelay(5000);
+
+      this.$mdToast.show(toast);
+      }, 6000);
     });
 
     promise.catch(err => {

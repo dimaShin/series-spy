@@ -1,4 +1,6 @@
 'use strict';
+const EventEmitter = require('events').EventEmitter;
+const messageBus = new EventEmitter();
 
 class ExUaDriver {
   constructor () {
