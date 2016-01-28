@@ -29,7 +29,7 @@ class ExUaDriver {
       self.request({
         url: url,
         jar: true,
-        proxy: 'http://178.92.10.136:3128',
+        //proxy: 'http://178.92.10.136:3128',
         headers: {
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36',
           'Cookie': 'uper=200'

@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const ExRules = new Schema({
   title: String,
-  name: String,
+  ru: String,
+  en: String,
   season: Number,
   episode: Number
 });

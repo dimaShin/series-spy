@@ -35,7 +35,7 @@ class RulesList {
   }
 
   startParsing () {
-    const promise = this.API.parse();
+    const promise = this.API.parse(this.rules);
     this.parsing.status = 'IN_PROGRESS';
 
     promise.then(response => {

@@ -18,8 +18,8 @@ function ApiService ($injector) {
         method: 'put'
       }
     }),
-    parse: () => {
-      return $http.get('http://127.0.0.1:8081/api/parse');
+    parse: (rules) => {
+      return $http.post('http://127.0.0.1:8081/api/parse', rules);
     }
   }
 }

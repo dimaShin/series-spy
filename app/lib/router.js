@@ -23,6 +23,11 @@ const ExCtrl = require('../controllers/ex');
     path: '/api/rules',
     method: 'post',
     middleware: [ExCtrl.create]
+  },
+  {
+    path: '/api/parse',
+    method: 'post',
+    middleware: [ExCtrl.parse]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));

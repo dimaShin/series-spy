@@ -2,6 +2,8 @@
 const async = require('asyncawait/async');
 const await = require('asyncawait/await');
 const _ = require('lodash');
+const ExDriver = require('./../drivers/ex_ua');
+const exDriver = new ExDriver();
 
 module.exports.get = async(function (req, res) {
   "use strict";
@@ -54,3 +56,33 @@ module.exports.create = async(function (req, res) {
 
   res.send(rule);
 });
+
+module.exports.parse = function (req, res) {
+  "use strict";
+  const rules = req.body.map(rule => {
+
+    const ruRegExp = rule.ru && rule.ru.replace(/\s/g, '\\s*');
+    const engRegExp = rule.en && rule.en.replace(/\s/g, '\\s*');
+
+    if (ruRegExp && engRegExp) {
+      rule.regExp = new RegExp(ruRegExp + '.*' + engRegExp, 'i');
+    } else {
+      rule.regExp = new RegExp(rule.title.replace(/\s/g, '\\s*'), 'i');
+    }
+
+
+
+    console.log(ruRegExp, engRegExp, rule.regExp);
+
+    return rule;
+  });
+
+  exDriver.foreignSerials(rules)
+    .then(matches => {
+      res.send(matches);
+    })
+    .catch(err => {
+      res.status(400);
+      res.send(err);
+    });
+};
