@@ -151,14 +151,14 @@ class ExUaDriver {
 
   static _getSeason (title) {
     "use strict";
-    const seasonRegExp = new RegExp('Сезон\\s*(\\d*)', 'i');
+    const seasonRegExp = new RegExp('(Cезон|Сезон)\\s*(\\d*)', 'i');
     const seasonMatch = title.match(seasonRegExp);
 
     if (!seasonMatch) {
       return null;
     }
 
-    else return +seasonMatch[1];
+    else return +seasonMatch[2];
   }
 
 }
