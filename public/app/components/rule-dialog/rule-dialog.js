@@ -2,6 +2,7 @@ import angular from 'angular';
 import template from './rule-dialog.html';
 
 import RuleDialogCtrl, { controller, controllerAs } from './rule-dialog-ctrl';
+import WrapEl from 'helpers/wrap-el';
 
 export default angular.module('components.rule-dialog', [
     RuleDialogCtrl
@@ -13,7 +14,8 @@ export default angular.module('components.rule-dialog', [
       restrict: 'E',
       template,
       controller,
-      controllerAs
+      controllerAs,
+      WrapEl
     }
 
   }).name;

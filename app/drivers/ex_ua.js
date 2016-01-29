@@ -69,6 +69,7 @@ class ExUaDriver {
 
           if (rule) {
             console.log('got match', title);
+            console.log('img: ', img);
             let season = ExUaDriver._getSeason(title);
 
             if (season !== null && (rule.season !== undefined && season < rule.season)) {
@@ -86,7 +87,8 @@ class ExUaDriver {
               title: title,
               episode: episode,
               season: season,
-              href: self.URL.base + href
+              href: self.URL.base + href,
+              imgSrc: img[0].attribs.src
             });
           }
         });

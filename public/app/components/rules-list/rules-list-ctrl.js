@@ -13,6 +13,7 @@ class RulesList {
     this.$mdToast = $injector.get('$mdToast');
     this.$rootScope = $injector.get('$rootScope');
     this.$timout = $injector.get('$timeout');
+    this.$document = $injector.get('$document');
 
     this.rules = this.API.rules.query();
     this.parsing = {
@@ -35,7 +36,7 @@ class RulesList {
     });
   }
 
-  startParsing () {
+  startParsing ($event) {
     const promise = this.API.parse(this.rules);
     this.parsing.status = 'IN_PROGRESS';
 
@@ -43,6 +44,7 @@ class RulesList {
       if (response.data.status === 'OK') {
         this.parsing.result = response.data.result;
         this.parsing.status = false;
+        this.showResults($event, this.parsing.result);
         return;
       }
       this.parsing.status = 'WAITING_SOCKET';
@@ -74,6 +76,21 @@ class RulesList {
 
     })
 
+  }
+
+  showResults ($event, results) {
+    this.$mdDialog.show({
+      template: '<parsing-results results="NoopCtrl.results" />',
+      locals: {
+        results
+      },
+      bindToController: true,
+      controllerAs: 'NoopCtrl',
+      controller: angular.noop,
+      parent: angular.element(this.$document.body),
+      targetEvent: $event,
+      fullscreen: true
+    })
   }
 }
 

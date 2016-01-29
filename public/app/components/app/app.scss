@@ -55,6 +55,10 @@ md-list-item > p {
   padding: 20px;
 }
 
+*.p-l-20 {
+  padding-left: 20px;
+}
+
 md-input-container *.md-errors-spacer {
   //min-height: 0;
 }
@@ -76,4 +80,10 @@ md-input-container *.md-errors-spacer {
 .childs-v-center {
   display: flex;
   align-items: center;
+}
+
+md-dialog.md-dialog-fullscreen {
+   min-height: 100%;
+   min-width: 100%;
+   border-radius: 0;
 }

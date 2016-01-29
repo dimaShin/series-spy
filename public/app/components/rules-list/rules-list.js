@@ -2,12 +2,13 @@ import angular from 'angular';
 import template from './rules-list.html';
 
 import RuleRow from './rule-row/rule-row';
-
 import RulesListCtrl, { controller, controllerAs } from './rules-list-ctrl';
+import ParsingResults from 'components/parsing-results/parsing-results';
 
 angular.module('components.rules-list', [
   RuleRow,
-  RulesListCtrl
+  RulesListCtrl,
+  ParsingResults
 ])
   .directive('rulesList', function () {
     "use strict";

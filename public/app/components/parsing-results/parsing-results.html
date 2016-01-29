@@ -1,0 +1,34 @@
+<md-dialog aria-label="Parsing Results">
+
+<md-dialog-content>
+  <md-toolbar class="md-primary p-l-20">
+    <h5 class="dialog-header">We found some shows for you.</h5>
+  </md-toolbar>
+
+  <md-content class="p-20"
+              layaut="row">
+
+    <md-list>
+
+      <md-list-item class="result-row"
+                    ng-repeat="row in this.results track by row.href">
+        <img ng-src="{{row.imgSrc}}"
+             class="md-avatar result-row-img"
+             alt="{{row.title}}" />
+
+        <div class="md-list-item-text" layout="column">
+          <h2><a class="md-title"
+                 target="_blank"
+                 ng-href="{{row.href}}"
+                 ng-bind="row.title">
+          </a></h2>
+          <p>Season: {{row.season}}</p>
+          <p>Episode: {{row.episode}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
+</md-dialog-content>
+
+</md-dialog>
