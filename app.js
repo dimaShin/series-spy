@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('./app/lib/mongodb');
 const nodemailer = require('nodemailer');
 const router = require('./app/lib/router');
-const PORT = 8081;
+const PORT = process.env.PORT || 8081;
 
 
 //const webpackDevMiddleware = require('webpack-dev-middleware');
