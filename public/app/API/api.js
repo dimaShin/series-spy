@@ -13,13 +13,13 @@ function ApiService ($injector) {
   const $q = $injector.get('$q');
 
   return {
-    rules: $resource('http://127.0.0.1:8081/api/rules/:_id', {_id: '@_id'}, {
+    rules: $resource('/api/rules/:_id', {_id: '@_id'}, {
       put: {
         method: 'put'
       }
     }),
     parse: (rules) => {
-      return $http.post('http://127.0.0.1:8081/api/parse', rules);
+      return $http.post('/api/parse', rules);
     }
   }
 }
