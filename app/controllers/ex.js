@@ -77,22 +77,22 @@ module.exports.parse = function (req, res) {
 
   exDriver.foreignSerials(rules)
     .then(matches => {
-      clearTimeout(idleWatcher);
+      //clearTimeout(idleWatcher);
       res.send({
         status: 'OK',
         result: matches
       });
     })
     .catch(err => {
-      clearTimeout(idleWatcher);
+      //clearTimeout(idleWatcher);
       res.status(400);
       res.send(err);
     });
 
-  const idleTime = 5000;
-  const idleWatcher = setTimeout(() => {
-    res.send({
-      status: false
-    });
-  }, idleTime);
+  //const idleTime = 5000;
+  //const idleWatcher = setTimeout(() => {
+  //  res.send({
+  //    status: false
+  //  });
+  //}, idleTime);
 };
