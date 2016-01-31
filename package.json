@@ -4,7 +4,8 @@
   "description": "Spy that will tell you when something new on ex.ua for u",
   "main": "app.js",
   "scripts": {
-    "start": "npm run build && node app",
+    "postinstall": "npm run build",
+    "start": "node app",
     "build": "webpack --colors --progress --display-error-details",
     "build:watch": "webpack --watch --colors --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
