@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "npm i && npm run build && node app",
-    "build": "webpack --colors --progress",
+    "build": "webpack --colors --progress --display-error-details",
     "build:watch": "webpack --watch --colors --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
