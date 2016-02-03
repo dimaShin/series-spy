@@ -14,6 +14,7 @@ class RulesList {
     this.$rootScope = $injector.get('$rootScope');
     this.$timout = $injector.get('$timeout');
     this.$document = $injector.get('$document');
+    this.$location = $injector.get('$location');
 
     this.rules = this.API.rules.query();
     this.parsing = {
@@ -36,45 +37,39 @@ class RulesList {
     });
   }
 
+  _waitForSocketConnection (ws, cb, interval) {
+    if (!angular.isDefined(interval)) {
+      interval = 1000;
+    }
+    if (ws.readyState === 1) {
+      return cb();
+    }
+
+    setTimeout(() => {
+      this._waitForSocketConnection(ws, cb, interval);
+    }, interval)
+  }
+
   startParsing ($event) {
-    const promise = this.API.parse(this.rules);
+    //const promise = this.API.parse(this.rules);
     this.parsing.status = 'IN_PROGRESS';
-
-    promise.then(response => {
-      if (response.data.status === 'OK') {
-        this.parsing.result = response.data.result;
-        this.parsing.status = false;
-        this.showResults($event, this.parsing.result);
-        return;
-      }
-      this.parsing.status = 'WAITING_SOCKET';
-
-      this.$timout(() => {
-        this.parsing.status = false;
-        const toast = this.$mdToast.simple()
-        .textContent('Parsing too long. Closing it.')
-        .position('right top')
-        .parent(window.body)
-        .theme('error-toast')
-        .hideDelay(5000);
-
-      this.$mdToast.show(toast);
-      }, 6000);
+    const host = this.$location.absUrl().replace(/^http/, 'ws');
+    const ws = new WebSocket(host);
+    this._waitForSocketConnection(ws, () => {
+      ws.send(angular.toJson(this.rules), { binary: true, mask: true });
+      const interval = setInterval(()=> {
+        ws.send('PING', { binary: true, mask: true });
+      }, 25000);
+      ws.onmessage = event => {
+        const data = angular.fromJson(event.data);
+        if (data.status === 'OK') {
+          clearInterval(interval);
+          this.parsing.result = data.result;
+          this.parsing.status = false;
+          this.showResults($event, this.parsing.result);
+        }
+      };
     });
-
-    promise.catch(err => {
-
-      this.parsing.status = false;
-      const toast = this.$mdToast.simple()
-        .textContent(err.data)
-        .position('right top')
-        .parent(window.body)
-        .theme('error-toast')
-        .hideDelay(5000);
-
-      this.$mdToast.show(toast);
-
-    })
 
   }
 

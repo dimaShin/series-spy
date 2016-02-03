@@ -6,6 +6,10 @@ const db = require('./app/lib/mongodb');
 const nodemailer = require('nodemailer');
 const router = require('./app/lib/router');
 const PORT = process.env.PORT || 8081;
+const http = require('http');
+
+const server = http.createServer(app);
+
 
 
 //const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -23,7 +27,7 @@ app.use(express.static(__dirname + '/public/dist'));
 app.use(router);
 app.set('db', db);
 
-app.listen(PORT, err => {
+server.listen(PORT, err => {
   if (err) {
     return console.log(err);
   }
@@ -31,15 +35,6 @@ app.listen(PORT, err => {
   console.log('Start listening ' + PORT);
 });
 
-app.get('/api/rules', (req, res) => {
-  res.send([
-    {
-      id: 0,
-      title: 'one'
-    },
-    {
-      id: 1,
-      title: 'two'
-    }
-  ]);
-});
+require('./app/lib/socket')(server);
+
+

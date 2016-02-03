@@ -49,7 +49,7 @@ class ExUaDriver {
         const $ = self.cheerio.load(response.body);
         //const cards = ExUaDriver._toArray( $('table.include_0 td') );
         const tables = ExUaDriver._toArray( $('table') );
-        console.log('got tables: ', tables.length);
+        //console.log('got tables: ', tables.length);
         const cards = ExUaDriver._toArray( $(tables[5]).find('td') );
         const match = [];
 
@@ -69,19 +69,19 @@ class ExUaDriver {
           const rule = ExUaDriver._getRule(title, rules);
 
           if (rule) {
-            console.log('got match', title);
-            console.log('img: ', img);
+            //console.log('got match', title);
+            //console.log('img: ', img);
             let season = ExUaDriver._getSeason(title);
 
             if (season !== null && (rule.season !== undefined && season < rule.season)) {
-              console.log('season do not match: ', season, rule.season);
+              //console.log('season do not match: ', season, rule.season);
               return;
             }
 
             let episode = ExUaDriver._getEpisode(title);
 
             if (episode !== null && (rule.episode !== undefined && episode < rule.episode)) {
-              console.log('episode do not match: ', episode, rule.episode);
+              //console.log('episode do not match: ', episode, rule.episode);
               return;
             }
             match.push({

@@ -20,6 +20,9 @@ function ApiService ($injector) {
     }),
     parse: (rules) => {
       return $http.post('/api/parse', rules);
+    },
+    getParsed: (id) => {
+      return $http.get('/api/parse', id);
     }
   }
 }

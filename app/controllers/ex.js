@@ -57,9 +57,9 @@ module.exports.create = async(function (req, res) {
   res.send(rule);
 });
 
-module.exports.parse = function (req, res) {
+module.exports.parse = function (rules, ws) {
   "use strict";
-  const rules = req.body.map(rule => {
+  rules.forEach(rule => {
 
     const ruRegExp = rule.ru && rule.ru.replace(/\s/g, '\\s*');
     const engRegExp = rule.en && rule.en.replace(/\s/g, '\\s*');
@@ -71,28 +71,17 @@ module.exports.parse = function (req, res) {
     }
 
     console.log(ruRegExp, engRegExp, rule.regExp);
-
-    return rule;
   });
 
   exDriver.foreignSerials(rules)
     .then(matches => {
-      //clearTimeout(idleWatcher);
-      res.send({
+      console.log('got matches: ', matches.length);
+      ws.send(JSON.stringify({
         status: 'OK',
         result: matches
-      });
+      }));
     })
     .catch(err => {
-      //clearTimeout(idleWatcher);
-      res.status(400);
-      res.send(err);
+      ws.send(err);
     });
-
-  //const idleTime = 5000;
-  //const idleWatcher = setTimeout(() => {
-  //  res.send({
-  //    status: false
-  //  });
-  //}, idleTime);
 };
