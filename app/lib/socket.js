@@ -13,11 +13,9 @@ module.exports = server => {
         console.log('PING');
         return;
       }
-      console.log('starting timeout');
-      setTimeout(() => {
-        console.log('start parsing');
-        exCtrl.parse(JSON.parse(rules), ws);
-      }, 120000);
+
+      console.log('start parsing');
+      exCtrl.parse(JSON.parse(rules), ws);
 
     });
   });
