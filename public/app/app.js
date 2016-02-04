@@ -4,10 +4,12 @@ import ngAnimate from 'angular-animate';
 
 import config from './config';
 import components from './components';
+import helpers from './helpers/';
 
 angular.module('app', [
   ngRoute,
   ngAnimate,
   config,
-  components
+  components,
+  helpers
 ]);

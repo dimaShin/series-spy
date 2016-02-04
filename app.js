@@ -10,14 +10,6 @@ const http = require('http');
 
 const server = http.createServer(app);
 
-
-
-//const webpackDevMiddleware = require('webpack-dev-middleware');
-//const webpackConfig = require('./webpack.config');
-//const webpack = require('webpack');
-//app.use(webpackDevMiddleware(compiler));
-//const compiler = webpack(webpackConfig);
-
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/dist/index.html');
 });

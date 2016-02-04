@@ -73,15 +73,25 @@ module.exports.parse = function (rules, ws) {
     console.log(ruRegExp, engRegExp, rule.regExp);
   });
 
+  const parseLimitTimeout = setTimeout(() => {
+    ws.send({
+      status: 'TOO_LONG'
+    });
+  }, 1000);
+
   exDriver.foreignSerials(rules)
     .then(matches => {
-      console.log('got matches: ', matches.length);
+      clearTimeout(parseLimitTimeout);
       ws.send(JSON.stringify({
         status: 'OK',
         result: matches
       }));
     })
     .catch(err => {
-      ws.send(err);
+      clearTimeout(parseLimitTimeout);
+      ws.send({
+        status: 'ERROR',
+        error: err
+      });
     });
 };

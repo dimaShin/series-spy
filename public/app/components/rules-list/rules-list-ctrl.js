@@ -12,9 +12,8 @@ class RulesList {
     this.$mdDialog = $injector.get('$mdDialog');
     this.$mdToast = $injector.get('$mdToast');
     this.$rootScope = $injector.get('$rootScope');
-    this.$timout = $injector.get('$timeout');
     this.$document = $injector.get('$document');
-    this.$location = $injector.get('$location');
+    this.Parser = $injector.get('Parser');
 
     this.rules = this.API.rules.query();
     this.parsing = {
@@ -27,7 +26,7 @@ class RulesList {
 
     this.$mdDialog.show({
       template: '<rule-dialog />',
-      parent: angular.element(document.body),
+      parent: angular.element(this.$document.body),
       targetEvent: $event,
       clickOutsideToClose:true,
       focusOnOpen: false
@@ -37,40 +36,11 @@ class RulesList {
     });
   }
 
-  _waitForSocketConnection (ws, cb, interval) {
-    if (!angular.isDefined(interval)) {
-      interval = 1000;
-    }
-    if (ws.readyState === 1) {
-      return cb();
-    }
-
-    setTimeout(() => {
-      this._waitForSocketConnection(ws, cb, interval);
-    }, interval)
-  }
-
   startParsing ($event) {
-    //const promise = this.API.parse(this.rules);
-    this.parsing.status = 'IN_PROGRESS';
-    const host = this.$location.absUrl().replace(/^http/, 'ws');
-    const ws = new WebSocket(host);
-    this._waitForSocketConnection(ws, () => {
-      ws.send(angular.toJson(this.rules), { binary: true, mask: true });
-      const interval = setInterval(()=> {
-        ws.send('PING', { binary: true, mask: true });
-      }, 25000);
-      ws.onmessage = event => {
-        const data = angular.fromJson(event.data);
-        if (data.status === 'OK') {
-          clearInterval(interval);
-          this.parsing.result = data.result;
-          this.parsing.status = false;
-          this.showResults($event, this.parsing.result);
-        }
-      };
-    });
-
+    this.Parser.parse(this.rules)
+      .then(result => {
+        this.showResults($event, result);
+      });
   }
 
   showResults ($event, results) {
