@@ -1,6 +1,5 @@
 'use strict';
-const EventEmitter = require('events').EventEmitter;
-const messageBus = new EventEmitter();
+const HttpProxyAgent = require('http-proxy-agent');
 
 class ExUaDriver {
   constructor () {
@@ -8,8 +7,6 @@ class ExUaDriver {
     this.request = require('request');
     this.cheerio = require('cheerio');
     this.Promise = require('bluebird');
-
-    //require('superagent-proxy')(this.request);
 
     this.URL = {
       base: 'http://www.ex.ua',
@@ -22,17 +19,17 @@ class ExUaDriver {
 
   foreignSerials (rules) {
     "use strict";
-    var self = this;
-
-    return new Promise (function (resolve, reject) {
+    return new Promise ((resolve, reject) => {
       "use strict";
-      const url = self.URL.base + self.URL.foreignSerials.url;
+      const url = this.URL.base + this.URL.foreignSerials.url;
 
       console.log('html will be loaded from: ', url);
-      self.request({
+      this.request({
         url: url,
         jar: true,
-        proxy: process.env.PROXY && 'https://94.153.234.254:3128',
+        tls: false,
+        autotls: 'required',
+        proxy: 'http://dmitri:jdbfj9877@31.41.218.156:65233',
         headers: {
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36',
           'Cookie': 'uper=200'
@@ -46,7 +43,7 @@ class ExUaDriver {
           return;
         }
         //response
-        const $ = self.cheerio.load(response.body);
+        const $ = this.cheerio.load(response.body);
         //const cards = ExUaDriver._toArray( $('table.include_0 td') );
         const tables = ExUaDriver._toArray( $('table') );
         //console.log('got tables: ', tables.length);
@@ -54,7 +51,7 @@ class ExUaDriver {
         const match = [];
 
         console.log('got cards: ', cards.length);
-        cards.forEach(function (card) {
+        cards.forEach(card => {
           "use strict";
           const img = $(card).find('img');
           const title = ExUaDriver._getCardTitle(img[0]);
@@ -88,7 +85,7 @@ class ExUaDriver {
               title: title,
               episode: episode,
               season: season,
-              href: self.URL.base + href,
+              href: this.URL.base + href,
               imgSrc: img[0].attribs.src
             });
           }
