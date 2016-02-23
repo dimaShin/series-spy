@@ -1,20 +1,33 @@
-import angular from 'angular';
-import ngRouter from 'angular-route';
+import ng from 'angular';
+import router from 'angular-router';
 
-RoutesConfig.$inject = ['$routeProvider', '$locationProvider'];
+export default ng.module('app.config.router', [ router ])
+  .config(($routeProvider, $locationProvider) => {
+    'ngInject';
 
-function RoutesConfig ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
 
-  $locationProvider.html5Mode(true);
+    $routeProvider.otherwise('/');
 
-  $routeProvider.when('/', {
-    template: '<app-component />'
-  });
+    $routeProvider.when('/', {
+      template: '<home user="$resolve.user"></home>',
+      resolve: {
+        user: ['user', user => user.resolve()]
+      }
+    });
 
-}
+    $routeProvider.when('/rules', {
+      template: '<rules rules="$resolve.rules"></rules>',
+      resolve: {
+        users: ['user', user => user.getRules()]
+      }
+    });
 
-angular.module('config.routes', [ngRouter])
-  .config(RoutesConfig);
+    $route.when('/signin', {
+      template: '<signin></signin>'
+    });
 
-
-export default 'config.routes';
+    $route.when('/signup', {
+      template: '<signup></signup>'
+    });
+  })

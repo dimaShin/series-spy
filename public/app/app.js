@@ -1,13 +1,7 @@
-import angular from 'angular';
-import ngRoute from 'angular-route';
-import ngAnimate from 'angular-animate';
+import ng from 'angular';
 
 import config from './config';
-import components from './components';
+import helpers from './helpers';
+import components from './components/';
 
-angular.module('app', [
-  ngRoute,
-  ngAnimate,
-  config,
-  components
-]);
+export default ng.module('app', [ config, helpers, components ]).name;
