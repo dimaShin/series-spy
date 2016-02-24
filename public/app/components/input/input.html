@@ -1,0 +1,21 @@
+<span class="input input--yoko">
+  <input class="input__field input__field--yoko"
+         type="{{this.type}}"
+         ng-model-options="{updateOn: 'blur'}"
+         name="{{this.name}}"
+         ng-model="this.model"
+         id="{{this.id}}" />
+  <div ng-messages="this.modelCtrl.$error"
+       ng-if="this.modelCtrl.$dirty"
+  >
+
+  </div>
+  <label class="input__label input__label--yoko"
+         ng-class="{ invalid: this.modelCtrl.$invalid && this.modelCtrl.$dirty }"
+         for="{{this.id}}"
+  >
+    <span class="input__label-content input__label-content--yoko"
+          ng-bind="this.label"
+    ></span>
+  </label>
+</span>

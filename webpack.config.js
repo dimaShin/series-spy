@@ -39,7 +39,14 @@ module.exports = {
       { test: /\.html$/, loader: 'raw' },
 
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap') },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') }
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
+      { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css!less?sourceMap') },
+
+      { test: /\.woff2?(.*)?$/, loader: 'file?name=fonts/[name].[ext]' },
+      { test: /\.(ttf|eot|svg)(.*)?$/, loader: 'file?name=fonts/[name].[ext]' },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
+      { test: /[\\\/]modernizr\.custom\.js$/,
+        loader: "imports?this=>window,html5=>window.html5!exports?window.Modernizr" }
     ]
   },
   resolve: {

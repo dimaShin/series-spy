@@ -1,7 +1,7 @@
 import ng from 'angular';
 import _ from 'lodash';
-import restangular from 'restangular';
-
+//import restangular from 'restangular';
+//console.log('rest:', restangular);
 class User {
   constructor (Restangular, $window) {
     "ngInject";
@@ -10,17 +10,17 @@ class User {
     this.rest = Restangular;
   }
 
-  getByToken(token) {
+  _getByToken(token) {
     "use strict";
-    return this._user = this.rest.one('user', token);
+    return this._user = this.rest.one('user-by-token', token);
   }
 
-  signin(authData) {
+  signIn(authData) {
     "use strict";
 
   }
 
-  signup(authData) {
+  signUp(authData) {
     "use strict";
 
   }
@@ -30,13 +30,11 @@ class User {
       return this._user;
     }
     const token = this.tokenStorage.getItem('x-token');
-    return this.getByToken(token);
+    return this._getByToken(token);
   }
-
-  getRu
 
 }
 
-export default ng.module('app.helpers.user', [ restangular ])
+export default ng.module('app.helpers.user', [  ])
   .service('user', User)
   .name;

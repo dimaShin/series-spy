@@ -2,8 +2,10 @@ import angular from 'angular';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 
-import config from './config';
-import components from './components';
+import './custom-bootstrap.less';
+
+import config from './config/';
+import components from './components/';
 import helpers from './helpers/';
 
 angular.module('app', [

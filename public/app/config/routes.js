@@ -1,5 +1,5 @@
 import ng from 'angular';
-import router from 'angular-router';
+import router from 'angular-route';
 
 export default ng.module('app.config.router', [ router ])
   .config(($routeProvider, $locationProvider) => {
@@ -7,27 +7,13 @@ export default ng.module('app.config.router', [ router ])
 
     $locationProvider.html5Mode(true);
 
-    $routeProvider.otherwise('/');
+    $routeProvider.otherwise('/signin');
 
-    $routeProvider.when('/', {
-      template: '<home user="$resolve.user"></home>',
-      resolve: {
-        user: ['user', user => user.resolve()]
-      }
+    $routeProvider.when('/signin', {
+      template: '<sign-in></sign-in>'
     });
 
-    $routeProvider.when('/rules', {
-      template: '<rules rules="$resolve.rules"></rules>',
-      resolve: {
-        users: ['user', user => user.getRules()]
-      }
+    $routeProvider.when('/signup', {
+      template: '<sign-up></sign-up>'
     });
-
-    $route.when('/signin', {
-      template: '<signin></signin>'
-    });
-
-    $route.when('/signup', {
-      template: '<signup></signup>'
-    });
-  })
+  }).name;

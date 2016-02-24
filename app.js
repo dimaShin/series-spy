@@ -10,13 +10,13 @@ const http = require('http');
 
 const server = http.createServer(app);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/dist/index.html');
-});
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public/dist'));
 app.use(router);
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/dist/index.html');
+});
 app.set('db', db);
 
 server.listen(PORT, err => {

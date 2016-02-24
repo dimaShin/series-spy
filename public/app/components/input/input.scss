@@ -1,0 +1,6 @@
+.input.input--yoko {
+  font-size: 1.4em;
+}
+.input__label--yoko.invalid::before {
+  background-color: rgba(200, 50, 50, .8);
+}
