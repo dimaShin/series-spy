@@ -9,9 +9,19 @@ class User {
     this.$resource = $resource('/api/user/:token',
       { token: '@token' },
       {
+        getDefaultRules: {
+          url: '/api/rules',
+          isArray: true,
+          method: 'get'
+        },
         signIn: {
           method: 'post',
           url: '/api/user/signin'
+        },
+        parse: {
+          method: 'post',
+          url: 'api/parse',
+          isArray: true
         }
       });
   }
@@ -37,13 +47,12 @@ class User {
       resolved: true,
       authorised: false,
       name: 'Guest',
-      rules: this.localStorage.getItem('x-rules') || [
-        { title: 'Rule 1', id: Math.ceil(Math.random() * 10e5) },
-        { title: 'Rule 2', id: Math.ceil(Math.random() * 10e5) },
-        { title: 'Rule 3', id: Math.ceil(Math.random() * 10e5) },
-        { title: 'Rule 4', id: Math.ceil(Math.random() * 10e5) }
-      ]
+      rules: this.$resource.getDefaultRules()
     });
+  }
+
+  parse(rules) {
+    return this.$resource.parse(rules);
   }
 
 }

@@ -1,5 +1,11 @@
+<h2>existing rules
+  <a ng-click="$ctrl.add()"
+     title="add new rule"
+     href="javascript:;"
+  ><i class="fa fa-plus-circle"></i></a>
+  : </h2>
 <ul class="rules-list">
-  <li ng-repeat="rule in $ctrl.rules track by rule.id">
+  <li ng-repeat="rule in $ctrl.rules track by rule._id">
     <rule-row rule="rule"></rule-row>
   </li>
 </ul>

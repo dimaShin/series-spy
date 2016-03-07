@@ -86,7 +86,8 @@ class ExUaDriver {
               episode: episode,
               season: season,
               href: this.URL.base + href,
-              imgSrc: img[0].attribs.src
+              imgSrc: img[0].attribs.src,
+              rule_id: rule._id
             });
           }
         });

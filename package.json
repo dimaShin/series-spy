@@ -24,6 +24,7 @@
     "body-parser": "^1.14.2",
     "cheerio": "^0.19.0",
     "express": "^4.13.3",
+    "font-awesome": "^4.5.0",
     "handlebars": "^4.0.5",
     "is_js": "^0.8.0",
     "less": "^2.6.0",

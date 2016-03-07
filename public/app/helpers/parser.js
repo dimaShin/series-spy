@@ -25,10 +25,11 @@ class Parser {
     return this.$q((resolve, reject) => {
       ws.send(angular.toJson(rules), { binary: true, mask: true });
       ws.onmessage = event => {
+        console.log('event', event);
         const data = angular.fromJson(event.data);
         if (data.status === 'OK') {
           clearInterval(holdConnection);
-          resolve(data.results);
+          resolve(data.result);
         }
       };
     })
@@ -57,5 +58,5 @@ class Parser {
 }
 
 export default angular.module('app.helpers.parser', [])
-  .service('Parser', Parser)
+  .service('parser', Parser)
   .name;

@@ -5,3 +5,17 @@
 .rule-title {
   flex: 1;
 }
+
+.rule-actions {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.rule-actions > * {
+  margin: 10px;
+}
+
+.series-count {
+  font-size: .8em;
+  font-style: italic;
+}

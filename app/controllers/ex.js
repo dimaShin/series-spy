@@ -59,6 +59,8 @@ module.exports.create = async(function (req, res) {
 
 module.exports.parse = function (rules, ws) {
   "use strict";
+
+  console.log(rules);
   rules.forEach(rule => {
 
     const ruRegExp = rule.ru && rule.ru.replace(/\s/g, '\\s*');

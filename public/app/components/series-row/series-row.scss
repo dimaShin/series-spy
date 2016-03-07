@@ -1,0 +1,22 @@
+.series-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.s-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.s-img img {
+
+}
+.s-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-left: 40px;
+}
