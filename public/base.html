@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-strict-di>
 <head>
   <meta charset="utf-8">
   <title>{%= o.htmlWebpackPlugin.options.title %}</title>
@@ -10,7 +10,7 @@
   <meta name="description" content="{%= o.htmlWebpackPlugin.options.description %}">
   <base href="/">
 </head>
-<body ng-app="app" data-ng-strict-di>
+<body>
   <ng-view>Loading...</ng-view>
 </body>
 </html>

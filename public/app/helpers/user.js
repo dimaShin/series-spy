@@ -1,40 +1,53 @@
 import ng from 'angular';
 import _ from 'lodash';
-//import restangular from 'restangular';
-//console.log('rest:', restangular);
+import resource from 'angular-resource';
+
 class User {
-  constructor (Restangular, $window) {
+  constructor ($resource, $window) {
     "ngInject";
-    this.tokenStorage = $window.localStorage;
-    Restangular.setBaseUrl('/api');
-    this.rest = Restangular;
-  }
-
-  _getByToken(token) {
-    "use strict";
-    return this._user = this.rest.one('user-by-token', token);
-  }
-
-  signIn(authData) {
-    "use strict";
-
-  }
-
-  signUp(authData) {
-    "use strict";
-
+    this.localStorage = $window.localStorage;
+    this.$resource = $resource('/api/user/:token',
+      { token: '@token' },
+      {
+        signIn: {
+          method: 'post',
+          url: '/api/user/signin'
+        }
+      });
   }
 
   resolve() {
-    if (this._user) {
-      return this._user;
+    console.log('resolve: ', this.user);
+    if (this.resolved) {
+      return this;
     }
-    const token = this.tokenStorage.getItem('x-token');
-    return this._getByToken(token);
+    const token = this.localStorage.getItem('x-token');
+    if (!token) {
+      return this.getDefaultUser();
+    }
+    return this.$resource.get({ token: token }).then(user => {
+      _.assign(this, user, {
+        resolved: true
+      })
+    });
+  }
+
+  getDefaultUser() {
+    return _.assign(this, {
+      resolved: true,
+      authorised: false,
+      name: 'Guest',
+      rules: this.localStorage.getItem('x-rules') || [
+        { title: 'Rule 1', id: Math.ceil(Math.random() * 10e5) },
+        { title: 'Rule 2', id: Math.ceil(Math.random() * 10e5) },
+        { title: 'Rule 3', id: Math.ceil(Math.random() * 10e5) },
+        { title: 'Rule 4', id: Math.ceil(Math.random() * 10e5) }
+      ]
+    });
   }
 
 }
 
-export default ng.module('app.helpers.user', [  ])
+export default ng.module('app.helpers.user', [ resource ])
   .service('user', User)
   .name;

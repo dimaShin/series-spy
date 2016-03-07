@@ -1,6 +1,7 @@
 import ng from 'angular';
 
 import input from './input/input';
-import signin from './sign-in/sign-in';
+import home from './home/home';
+import auth from './auth/auth';
 
-export default ng.module('app.components', [ input, signin ]).name;
+export default ng.module('app.components', [ input, home, auth ]).name;

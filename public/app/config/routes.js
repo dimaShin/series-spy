@@ -7,13 +7,15 @@ export default ng.module('app.config.router', [ router ])
 
     $locationProvider.html5Mode(true);
 
-    $routeProvider.otherwise('/signin');
+    $routeProvider.otherwise('/');
 
-    $routeProvider.when('/signin', {
-      template: '<sign-in></sign-in>'
-    });
-
-    $routeProvider.when('/signup', {
-      template: '<sign-up></sign-up>'
+    $routeProvider.when('/', {
+      template: '<spy-home></spy-home>',
+      resolve: {
+        user: ['user', user => {
+          "use strict";
+          return user.resolve();
+        }]
+      }
     });
   }).name;
