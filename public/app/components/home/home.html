@@ -8,16 +8,18 @@
   </nav>
 
   <div class="app-content-container">
-    <rules-list rules="$ctrl.user.rules"></rules-list>
+    <ui-view></ui-view>
   </div>
 
   <nav class="app-root-navbar navbar-default app-navbar-fixed-bottom text-right">
-    <div class="flex-1"></div>
-    <button
-      type="button"
-      class="btn btn-primary"
-      ng-click="$ctrl.parse()"
-    >find new series</button>
+    <ul class="app-site-map">
+      <li class="navbar-brand" ui-sref-active="">
+        <a ui-sref="shows">TV Shows</a>
+      </li>
+      <li class="navbar-brand" ui-sref-active="">
+        <a ui-sref="schedule">Schedule</a>
+      </li>
+    </ul>
   </nav>
 
 

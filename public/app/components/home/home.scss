@@ -100,4 +100,17 @@ nav.navbar-default {
   margin: 10px;
 }
 
+.app-site-map {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 0;
+}
+
+ul.app-site-map > li {
+  list-style: none;
+}
+
 @import "./helpers";
