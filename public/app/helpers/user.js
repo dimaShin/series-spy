@@ -51,8 +51,18 @@ class User {
     });
   }
 
-  parse(rules) {
-    return this.$resource.parse(rules);
+  getRules(ruleId) {
+    if (!ruleId) {
+      return this.rules;
+    }
+
+    const rule = this.rules.find(rule => rule._id === ruleId);
+
+    if (!rule) {
+      throw new Error('Sorry, but there is no such rule.');
+    }
+
+    return rule;
   }
 
 }

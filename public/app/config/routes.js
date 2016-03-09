@@ -38,5 +38,30 @@ export default ng.module('app.config.router', [ router ])
         url: 'schedule',
         parent: 'home',
         template: '<schedule></schedule>'
+    })
+    .state('show',
+      {
+        url: 'show/:id',
+        parent: 'home',
+        template: '<rule-details rule="$ctrl.rule"></rule-details>',
+        resolve: {
+          rule: (user, $stateParams) => {
+            "ngInject";
+            if (!$stateParams.id && !$stateParams.rule) {
+              return {}
+            }
+
+            if ($stateParams.rule) {
+              return $stateParams.rule;
+            }
+
+            return user.getRules($stateParams.id);
+          }
+        },
+        controller: function (rule) {
+          "ngInject";
+          this.rule = rule;
+        },
+        controllerAs: '$ctrl'
     });
   }).name;
