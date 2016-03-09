@@ -1,0 +1,16 @@
+*.m-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+*.m-header .m-title {
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+*.m-header .m-close {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,21 @@
+<div class="">
+  <modal-header dismiss="$ctrl.dismiss"></modal-header>
+  <div class="m-confirm-content"
+       ng-bind="$ctrl.message"
+  ></div>
+
+  <div class="m-confirm-actions">
+    <button class="btn btn-default"
+            ng-click="$ctrl.dismiss()"
+    >
+      <i class="fa fa-ban text-danger"></i>
+      Cancel
+    </button>
+    <button class="btn btn-success btn-wide"
+            ng-click="$ctrl.close()"
+    >
+      <i class="fa fa-check"></i>
+      Yes
+    </button>
+  </div>
+</div>

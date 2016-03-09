@@ -1,0 +1,14 @@
+.m-confirm-content {
+  display: flex;
+  justify-content: center;
+}
+
+.m-confirm-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.m-confirm-actions > button:not(:last-child) {
+  margin-right: 10px;
+}
