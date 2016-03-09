@@ -1,28 +1,24 @@
 <div class="app-root-container">
 
-  <div class="panel panel-primary">
-    <div class="panel-heading clearfix">
-      <span class="panel-title">
-        Series Spy
-      </span>
-
-      <div class="pull-right">
-        <spy-auth></spy-auth>
-      </div>
-
+  <nav class="app-root-navbar navbar-primary app-navbar-fixed-top">
+    <div class="nav-title">TV Spy</div>
+    <div class="nav-actions">
+      <spy-auth></spy-auth>
     </div>
+  </nav>
 
-    <div class="panel-body">
-      <rules-list rules="$ctrl.user.rules"></rules-list>
-    </div>
-
-    <div class="panel-footer text-right">
-      <button
-          type="button"
-          class="btn btn-primary"
-          ng-click="$ctrl.parse()"
-      >find new series</button>
-    </div>
-
+  <div class="app-content-container">
+    <rules-list rules="$ctrl.user.rules"></rules-list>
   </div>
+
+  <nav class="app-root-navbar navbar-default app-navbar-fixed-bottom text-right">
+    <div class="flex-1"></div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      ng-click="$ctrl.parse()"
+    >find new series</button>
+  </nav>
+
+
 </div>
