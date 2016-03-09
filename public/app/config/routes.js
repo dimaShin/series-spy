@@ -17,7 +17,6 @@ export default ng.module('app.config.router', [ router ])
           template: '<spy-home></spy-home>',
           resolve: {
             user: ['user', user => {
-              "use strict";
               return user.resolve();
             }]
           }
@@ -41,21 +40,25 @@ export default ng.module('app.config.router', [ router ])
     })
     .state('show',
       {
-        url: 'show/:id',
+        url: 'show/:_id',
         parent: 'home',
         template: '<rule-details rule="$ctrl.rule"></rule-details>',
+        params: {
+          rule: null
+        },
         resolve: {
           rule: (user, $stateParams) => {
             "ngInject";
-            if (!$stateParams.id && !$stateParams.rule) {
+            console.log('stateParams:', $stateParams);
+            if (!$stateParams._id) {
               return {}
             }
 
             if ($stateParams.rule) {
               return $stateParams.rule;
             }
-
-            return user.getRules($stateParams.id);
+            console.log('getting rule:', $stateParams._id);
+            return user.getRules($stateParams._id);
           }
         },
         controller: function (rule) {

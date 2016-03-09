@@ -3,9 +3,10 @@ import _ from 'lodash';
 import resource from 'angular-resource';
 
 class User {
-  constructor ($resource, $window) {
+  constructor ($resource, $window, $q) {
     "ngInject";
     this.localStorage = $window.localStorage;
+    this.$q = $q;
     this.$resource = $resource('/api/user/:token',
       { token: '@token' },
       {
@@ -27,8 +28,7 @@ class User {
   }
 
   resolve() {
-    console.log('resolve: ', this.user);
-    if (this.resolved) {
+    if (this.$resolved) {
       return this;
     }
     const token = this.localStorage.getItem('x-token');
@@ -44,7 +44,7 @@ class User {
 
   getDefaultUser() {
     return _.assign(this, {
-      resolved: true,
+      $resolved: true,
       authorised: false,
       name: 'Guest',
       rules: this.$resource.getDefaultRules()
@@ -55,13 +55,23 @@ class User {
     if (!ruleId) {
       return this.rules;
     }
+    if (!this.rules.$resolved) {
+      return this.$q(resolve => {
+        this.rules.$promise.then(rules => {
+          resolve(this._getRuleById(rules, ruleId));
+        })
+      })
+    }
+    return this._getRuleById(this.rules, ruleId);
+  }
 
-    const rule = this.rules.find(rule => rule._id === ruleId);
-
+  _getRuleById(rules, ruleId) {
+    const rule = rules.find(rule => {
+      return rule._id === ruleId
+    });
     if (!rule) {
       throw new Error('Sorry, but there is no such rule.');
     }
-
     return rule;
   }
 

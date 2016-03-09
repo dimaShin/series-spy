@@ -8,11 +8,13 @@ import 'font-awesome/css/font-awesome.css'
 import config from './config/';
 import components from './components/';
 import helpers from './helpers/';
+import run from './run';
 
 angular.module('app', [
   ngRoute,
   ngAnimate,
   config,
   components,
-  helpers
+  helpers,
+  run
 ]);

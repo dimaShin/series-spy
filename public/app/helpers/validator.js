@@ -6,14 +6,28 @@ class Validator {
 
   }
 
+  _matchAll(cases) {
+    for( let i = 0; i < cases.length; i++) {
+      if (!cases[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   get(validator) {
-    return this[validator]
+    return this[validator].bind(this);
   }
 
   required() {
-    return value => {
-      return !!String(value);
-    }
+    return (value => {
+      return this._matchAll([
+        angular.isDefined(value),
+        value !== null,
+        !isNaN(value),
+        !!String(value)
+      ]);
+    }).bind(this);
   }
 
   password() {
@@ -33,5 +47,5 @@ class Validator {
 }
 
 export default angular.module('app.helpers.validator', [])
-  .service('Validator', Validator)
+  .service('validator', Validator)
   .name;

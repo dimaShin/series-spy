@@ -8,7 +8,7 @@ import link from './input-link';
 import InputCtrl, { controller, controllerAs } from './input-ctrl';
 
 export default angular.module('app.components.input', [ InputCtrl ])
-  .directive('cdpInput', Validator => {
+  .directive('cdpInput', validator => {
     'ngInject';
     return {
 
@@ -25,7 +25,7 @@ export default angular.module('app.components.input', [ InputCtrl ])
       template,
       controller,
       controllerAs,
-      link: link(Validator)
+      link: link(validator)
 
     }
   }).name;

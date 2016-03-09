@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
-export default Validator => {
+export default validator => {
+  console.log('validator: ', validator.get);
   return ($scope, $el, $attrs) => {
 
     let $inputEl = $el.find('input');
@@ -12,8 +13,8 @@ export default Validator => {
         $inputEl.parent().addClass('input--filled');
       }
 
-      _.forIn(validators, (params, validator) => {
-        $scope.modelCtrl.$validators[validator] = Validator.get(validator)(params);
+      _.forIn(validators, (params, validatorName) => {
+        $scope.modelCtrl.$validators[validatorName] = validator.get(validatorName)(params);
       });
       $scope.modelCtrl.$validate();
     }, 15);

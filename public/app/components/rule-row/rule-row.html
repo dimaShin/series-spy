@@ -9,13 +9,11 @@
   </div>
 
   <div class="rule-actions">
-    <span class="pointer"
-       ng-click="$ctrl.edit(rule)"
-    >
+    <a ui-sref="show({ rule: $ctrl.rule, _id: $ctrl.rule._id })">
       <i class="fa fa-edit"></i>
-    </span>
+    </a>
     <span class="pointer"
-       ng-click="$ctrl.delete(rule)"
+       ng-click="$ctrl.delete($ctrl.rule)"
     >
       <i class="fa fa-trash"></i>
     </span>
