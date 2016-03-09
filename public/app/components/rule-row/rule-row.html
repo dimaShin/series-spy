@@ -1,20 +1,20 @@
 <div class="rule-row">
-  <h2 class="rule-title">
+  <div class="rule-title">
     <span ng-bind="$ctrl.rule.title"></span>
     <span ng-show="$ctrl.rule.series"
           class="series-count"
     >
       [ {{$ctrl.rule.series.length}} new series ]
     </span>
-  </h2>
+  </div>
 
   <div class="rule-actions">
-    <span class="p-10 pointer"
+    <span class="pointer"
        ng-click="$ctrl.edit(rule)"
     >
       <i class="fa fa-edit"></i>
     </span>
-    <span class="p-10 pointer"
+    <span class="pointer"
        ng-click="$ctrl.delete(rule)"
     >
       <i class="fa fa-trash"></i>
