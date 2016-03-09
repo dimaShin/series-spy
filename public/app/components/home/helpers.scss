@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+*.flex {
+  display: flex;
+}
+
 *.flex-1 {
   flex: 1;
 }
@@ -13,4 +17,26 @@
 *.flex-row {
   display: flex;
   flex-direction: row;
+}
+
+*.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+*.flex-center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+*.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+*.btn.btn-wide {
+  min-width: 200px;
 }

@@ -25,6 +25,16 @@ class User {
           isArray: true
         }
       });
+    this.rulesResource =  $resource('/api/rules/:_id',
+      { _id: '@_id' },
+      {
+        save: {
+          method: 'put'
+        },
+        add: {
+          method: 'post'
+        }
+      });
   }
 
   resolve() {
@@ -47,7 +57,7 @@ class User {
       $resolved: true,
       authorised: false,
       name: 'Guest',
-      rules: this.$resource.getDefaultRules()
+      rules: this.rulesResource.query()
     });
   }
 

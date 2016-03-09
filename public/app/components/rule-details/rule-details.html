@@ -1,22 +1,64 @@
-<form name="form">
-  <cdp-input
-      data-label="title"
-      model="$ctrl.rule.title"
-      data-model-ctrl="form.title"
-      validators="{ required: true }"
-  ></cdp-input>
-  <cdp-input
-      data-label="russian"
-      data-name="ru"
-      model="$ctrl.rule.ru"
-      data-model-ctrl="form.ru"
-      validators="{ required: true }"
-  ></cdp-input>
-  <cdp-input
-      data-label="english"
-      data-name="en"
-      model="$ctrl.rule.en"
-      data-model-ctrl="form.en"
-      validators="{ required: true }"
-  ></cdp-input>
+<form name="form" ng-submit="false">
+  <div class="container-fluid no-padding flex-center">
+    <cdp-input
+        data-label="title"
+        model="$ctrl.rule.title"
+        data-model-ctrl="form.title"
+        validators="{ required: true }"
+    ></cdp-input>
+  </div>
+  <div class="container-fluid no-padding flex-center">
+    <cdp-input
+        data-label="russian"
+        data-name="ru"
+        model="$ctrl.rule.ru"
+        data-model-ctrl="form.ru"
+        validators="{ required: true }"
+    ></cdp-input>
+  </div>
+  <div class="container-fluid no-padding flex-center">
+    <cdp-input
+        data-label="english"
+        data-name="en"
+        model="$ctrl.rule.en"
+        data-model-ctrl="form.en"
+        validators="{ required: true }"
+    ></cdp-input>
+  </div>
+
+  <div class="flex-row container-fluid no-padding">
+
+    <div class="col-sm-6 no-padding">
+      <cdp-input
+          data-label="season"
+          data-type="number"
+          data-name="season"
+          model="$ctrl.rule.season"
+          data-model-ctrl="form.season"
+          validators="{ required: true }"
+      ></cdp-input>
+    </div>
+
+    <div class="col-sm-6 no-padding">
+      <cdp-input
+          data-label="episode"
+          data-type="number"
+          data-name="episode"
+          model="$ctrl.rule.episode"
+          data-model-ctrl="form.episode"
+          validators="{ required: true }"
+      ></cdp-input>
+    </div>
+  </div>
+
+  <div class="container-fluid flex">
+    <div class="flex-1"></div>
+    <button type="submit"
+            class="btn btn-primary btn-wide"
+            ng-click="$ctrl.save()"
+    >Save</button>
+  </div>
+
+
+
 </form>
