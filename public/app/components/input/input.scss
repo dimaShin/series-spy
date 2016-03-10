@@ -1,6 +1,18 @@
+@import '../../styles/variables';
+
 .input.input--yoko {
   font-size: 1.4em;
 }
-.input__label--yoko.invalid::before {
-  background-color: rgba(200, 50, 50, .8);
+
+
+.input__label--yoko.invalid::before,
+.input__label--yoko.invalid::after{
+  background-color: $brand-danger;
+}
+
+
+.input__label--yoko::before,
+.input__label--yoko::after
+{
+  background-color: $primary-color;
 }

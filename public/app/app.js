@@ -2,7 +2,8 @@ import angular from 'angular';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 
-import './custom-bootstrap.less';
+import './styles/custom-bootstrap.less';
+import './styles/main.scss';
 import 'font-awesome/css/font-awesome.css'
 
 import config from './config/';

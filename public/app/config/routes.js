@@ -36,7 +36,14 @@ export default ng.module('app.config.router', [ router ])
       {
         url: 'schedule',
         parent: 'home',
-        template: '<schedule></schedule>'
+        template: '<schedule></schedule>',
+        resolve: {
+          schedule: (user) => {
+            "ngInject";
+            const promise = user.getSchedule().$promise;
+            return promise;
+          }
+        }
     })
     .state('show',
       {
@@ -49,7 +56,6 @@ export default ng.module('app.config.router', [ router ])
         resolve: {
           rule: (user, $stateParams) => {
             "ngInject";
-            console.log('stateParams:', $stateParams);
             if (!$stateParams._id) {
               return {}
             }
@@ -57,7 +63,6 @@ export default ng.module('app.config.router', [ router ])
             if ($stateParams.rule) {
               return $stateParams.rule;
             }
-            console.log('getting rule:', $stateParams._id);
             return user.getRules($stateParams._id);
           }
         },

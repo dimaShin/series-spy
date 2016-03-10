@@ -1,14 +1,4 @@
-$breakpoint-tablet: 768px;
-$breakpoint-phone: 768px;
-$breakpoint-desktop: 1024px;
-
-$root-container-width-desktop: 1000px;
-$root-container-width-tablet: 100vw;
-
-$primary-color: #0B4A5E;
-$default-color: #f8f8f8;
-
-$nav-bar-height: 50px;
+@import '../../styles/variables';
 
 html {
   @media (min-width: $breakpoint-phone) {

@@ -35,6 +35,25 @@ class User {
           method: 'post'
         }
       });
+
+    this.scheduleResourse = $resource('/api/schedule/:_id',
+      {_id: '@_id'},
+      {
+        save: {
+          method: 'put'
+        },
+        add: {
+          method: 'post'
+        }
+      });
+  }
+
+  getSchedule() {
+    if (this.schedule) {
+      return this.schedule;
+    }
+    this.schedule = this.scheduleResourse.get();
+    return this.schedule;
   }
 
   resolve() {
