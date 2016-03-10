@@ -2,6 +2,32 @@
 
   <h4 class="form-row-title">Select weekdays:</h4>
   <div class="job-weekdays">
+    <label>
+      <input
+          type="checkbox"
+          ng-change="$ctrl.selectAll()"
+          ng-model="$ctrl.job.all"
+      />
+      Select All
+    </label>
+    <label>
+      <input
+          type="checkbox"
+          ng-change="$ctrl.selectWeekDays($ctrl.job.weekdays)"
+          ng-model="$ctrl.job.weekdays"
+      />
+      Select Weekdays
+    </label>
+    <label>
+      <input
+          type="checkbox"
+          ng-change="$ctrl.selectWeekend($ctrl.job.weekend)"
+          ng-model="$ctrl.job.weekend"
+      />
+      Select Weekend
+    </label>
+  </div>
+  <div class="job-weekdays">
     <label class="weekday">
       <input
           type="checkbox"
@@ -70,7 +96,7 @@
   <h4 class="form-row-title">Select time:</h4>
 
   <cdp-input
-      class="sdp-input"
+      class="cdp-input"
       label="search time"
       name="time"
       type="time"

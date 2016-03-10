@@ -1,11 +1,14 @@
 .job-weekdays {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.job-weekdays label {
+  cursor: pointer;
 }
 
 .weekday {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,6 +18,6 @@
   margin-top: 30px;
 }
 
-.job-form .form-row-title cdp-input:first-child .input {
+.job-form .cdp-input span.input {
   margin-top: 0;
 }
