@@ -2,6 +2,7 @@ const _ = require('lodash');
 const express = require('express');
 const router = module.exports = express.Router();
 const ExCtrl = require('../controllers/ex');
+const ScheduleCtrl = require('../controllers/schedule');
 
 [
   {
@@ -28,6 +29,16 @@ const ExCtrl = require('../controllers/ex');
     path: '/api/parse',
     method: 'post',
     middleware: [ExCtrl.parse]
+  },
+  {
+    path: '/api/schedule',
+    method: 'get',
+    middleware: [ScheduleCtrl.get]
+  },
+  {
+    path: '/api/schedule',
+    method: 'post',
+    middleware: [ScheduleCtrl.add]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));
