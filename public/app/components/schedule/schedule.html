@@ -1,9 +1,11 @@
-<div class="container-fluid">
-  <job job="$ctrl.schedule"></job>
-</div>
-<div class="container-fluid text-right">
-  <button
-    class="btn btn-success btn-wide"
-    ng-click="$ctrl.save()"
-  >Save</button>
-</div>
+<ul class="jobs">
+  <h4>
+    jobs list
+    <i class="fa fa-plus-circle"
+       ng-click="$ctrl.addJob()"
+    ></i>
+  </h4>
+  <li ng-repeat="job in $ctrl.user.jobs track by job._id">
+    <job job="job"></job>
+  </li>
+</ul>

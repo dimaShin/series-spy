@@ -20,7 +20,8 @@ export default angular.module('app.components.input', [ InputCtrl ])
         name: '@',
         validators: '=',
         model: '=',
-        modelCtrl: '='
+        modelCtrl: '=',
+        onChange: '&'
       },
       template,
       controller,

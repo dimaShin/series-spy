@@ -38,10 +38,9 @@ export default ng.module('app.config.router', [ router ])
         parent: 'home',
         template: '<schedule></schedule>',
         resolve: {
-          schedule: (user) => {
+          jobs: (user) => {
             "ngInject";
-            const promise = user.getSchedule().$promise;
-            return promise;
+            return user.getJobs().$promise;
           }
         }
     })

@@ -1,3 +1,21 @@
+$card-padding: 20px;
+
+.job-form {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  padding: $card-padding;
+  margin-bottom: 20px;
+}
+
+.job-form .delete-icon {
+  position: absolute;
+  right: $card-padding;
+  top: $card-padding;
+  cursor: pointer;
+}
+
 .job-weekdays {
   display: flex;
   flex-direction: row;

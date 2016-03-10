@@ -31,14 +31,24 @@ const ScheduleCtrl = require('../controllers/schedule');
     middleware: [ExCtrl.parse]
   },
   {
-    path: '/api/schedule',
+    path: '/api/jobs',
     method: 'get',
     middleware: [ScheduleCtrl.get]
   },
   {
-    path: '/api/schedule',
+    path: '/api/jobs',
     method: 'post',
     middleware: [ScheduleCtrl.add]
+  },
+  {
+    path: '/api/jobs',
+    method: 'put',
+    middleware: [ScheduleCtrl.save]
+  },
+  {
+    path: '/api/jobs/:_id',
+    method: 'delete',
+    middleware: [ScheduleCtrl.delete]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));

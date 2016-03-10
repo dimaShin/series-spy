@@ -36,7 +36,7 @@ class User {
         }
       });
 
-    this.scheduleResourse = $resource('/api/schedule/:_id',
+    this.jobsResourse = $resource('/api/jobs/:_id',
       {_id: '@_id'},
       {
         save: {
@@ -48,12 +48,12 @@ class User {
       });
   }
 
-  getSchedule() {
-    if (this.schedule) {
-      return this.schedule;
+  getJobs() {
+    if (this.jobs) {
+      return this.jobs;
     }
-    this.schedule = this.scheduleResourse.get();
-    return this.schedule;
+    this.jobs = this.jobsResourse.query();
+    return this.jobs;
   }
 
   resolve() {

@@ -18,6 +18,11 @@ class InputCtrl {
     _.assign($scope, defaults);
 
     const $input = $element.find('input');
+    this.$scope = $scope;
+  }
+
+  onChange() {
+    this.$scope.onChange();
   }
 
 

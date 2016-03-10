@@ -1,5 +1,12 @@
 <form name="form" class="job-form">
 
+  <span
+      class="delete-icon"
+      ng-click="$ctrl.delete()"
+  >
+    <i class="fa fa-times-circle"></i>
+  </span>
+
   <h4 class="form-row-title">Select weekdays:</h4>
   <div class="job-weekdays">
     <label>
@@ -32,6 +39,7 @@
       <input
           type="checkbox"
           id="mon"
+          ng-change="$ctrl.selectDay()";
           ng-model="$ctrl.job.mon"
       />
       mon
@@ -93,16 +101,15 @@
 
   </div>
 
-  <h4 class="form-row-title">Select time:</h4>
-
   <cdp-input
       class="cdp-input"
       label="search time"
       name="time"
       type="time"
       id="time"
+      data-on-change="$ctrl.save($ctrl.job)"
       validators="{ required: true }"
-      model="$ctrl.schedule.time"
+      model="$ctrl.job.time"
       model-ctrl="form.time"
   ></cdp-input>
 

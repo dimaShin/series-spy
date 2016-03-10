@@ -4,6 +4,7 @@
          ng-model-options="{updateOn: 'blur'}"
          name="{{this.name}}"
          ng-model="this.model"
+         ng-change="iCtrl.onChange()"
          id="{{this.id}}" />
   <div ng-messages="this.modelCtrl.$error"
        ng-if="this.modelCtrl.$dirty"
