@@ -1,17 +1,9 @@
-<form name="form" ng-submit="false">
-  <cdp-input
-      label="search time"
-      name="time"
-      type="time"
-      id="time"
-      validators="{ required: true }"
-      model="$ctrl.schedule.time"
-      model-ctrl="form.time"
-  ></cdp-input>
-
-  <button type="submit"
-          class="btn btn-success btn-wide"
-          ng-click="$ctrl.save()"
+<div class="container-fluid">
+  <job job="$ctrl.schedule"></job>
+</div>
+<div class="container-fluid text-right">
+  <button
+    class="btn btn-success btn-wide"
+    ng-click="$ctrl.save()"
   >Save</button>
-
-</form>
+</div>

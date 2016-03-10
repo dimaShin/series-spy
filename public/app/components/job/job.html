@@ -1,0 +1,84 @@
+<form name="form" class="job-form">
+
+  <h4 class="form-row-title">Select weekdays:</h4>
+  <div class="job-weekdays">
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="mon"
+          ng-model="$ctrl.job.mon"
+      />
+      mon
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="tue"
+          ng-model="$ctrl.job.tue"
+      />
+      tue
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="wed"
+          ng-model="$ctrl.job.wed"
+      />
+      wed
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="thu"
+          ng-model="$ctrl.job.thu"
+      />
+      thu
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="fri"
+          ng-model="$ctrl.job.fri"
+      />
+      fri
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="sat"
+          ng-model="$ctrl.job.sat"
+      />
+      sat
+    </label>
+
+    <label class="weekday">
+      <input
+          type="checkbox"
+          id="sun"
+          ng-model="$ctrl.job.sun"
+      />
+      sun
+    </label>
+
+  </div>
+
+  <h4 class="form-row-title">Select time:</h4>
+
+  <cdp-input
+      class="sdp-input"
+      label="search time"
+      name="time"
+      type="time"
+      id="time"
+      validators="{ required: true }"
+      model="$ctrl.schedule.time"
+      model-ctrl="form.time"
+  ></cdp-input>
+
+
+</form>

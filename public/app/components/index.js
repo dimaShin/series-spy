@@ -6,7 +6,8 @@ import auth from './auth/auth';
 import seriesList from './series-list/series-list';
 import modal from './modal';
 import schedule from './schedule/schedule';
+import job from './job/job';
 
 export default ng.module('app.components',
-  [ input, home, auth, seriesList, modal, schedule ])
+  [ input, home, auth, seriesList, modal, schedule, job ])
   .name;
