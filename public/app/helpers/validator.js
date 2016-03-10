@@ -20,14 +20,9 @@ class Validator {
   }
 
   required() {
-    return (value => {
-      return this._matchAll([
-        angular.isDefined(value),
-        value !== null,
-        !isNaN(value),
-        !!String(value)
-      ]);
-    }).bind(this);
+    return value => {
+      return !is.empty(value);
+    };
   }
 
   password() {
