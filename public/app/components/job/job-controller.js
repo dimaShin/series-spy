@@ -5,13 +5,6 @@ export default class JobController {
     'ngInject';
 
     this.user = $injector.get('user');
-
-    this.job.all = true;
-    this.job.weekend = true;
-    this.job.weekdays = true;
-    this.weekend = [ 'sat', 'sun' ];
-    this.weekdays = [ 'mon', 'tue', 'wed', 'thu', 'fri' ];
-    this.selectAll();
     this.modal = $injector.get('modal');
   }
 
@@ -23,8 +16,6 @@ export default class JobController {
   }
 
   selectWeekend(state) {
-    this.weekend.forEach(day => this.job[day] = state);
-
     if (state && this.job.weekdays) {
       this.job.all = true;
     } else if (!state) {
@@ -33,8 +24,6 @@ export default class JobController {
   }
 
   selectWeekDays(state) {
-    this.weekdays.forEach(day => this.job[day] = state);
-
     if (state && this.job.weekend) {
       this.job.all = true;
     } else if (!state) {
@@ -42,12 +31,8 @@ export default class JobController {
     }
   }
 
-  selectDay(day) {
-    this.job.save();
-  }
-
   save(job) {
-    return job.$save();
+    job.$save();
   }
 
   delete() {

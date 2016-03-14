@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 $card-padding: 20px;
 
 .job-form {
@@ -18,7 +20,10 @@ $card-padding: 20px;
 
 .job-weekdays {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+  }
   justify-content: space-between;
 }
 

@@ -5,7 +5,11 @@ export default class ScheduleController {
   }
 
   addJob() {
-    const job = this.user.jobsResourse.add({});
+    const job = this.user.jobsResourse.add({
+      weekdays: true,
+      weekend: true,
+      time: '2:12'
+    });
     this.user.jobs.push(job);
   }
 }

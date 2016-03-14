@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Schedule = new Schema({
+const Job = new Schema({
   user_id: String,
+  weekend: Boolean,
+  weekdays: Boolean,
   time: String
 });
 
-mongoose.model('Schedule', Schedule);
+mongoose.model('Job', Job);

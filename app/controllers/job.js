@@ -4,42 +4,41 @@ const _ = require('lodash');
 
 module.exports.get = async(function (req, res) {
   const db = req.app.get('db');
-  const Schedule = db.model('Schedule');
+  const Job = db.model('Job');
 
 
-  const schedule = await(Schedule.find().exec());
+  const job = await(Job.find().exec());
 
-  res.send(schedule);
+  res.send(job);
 });
 
 module.exports.add = async(function (req, res) {
   const db = req.app.get('db');
-  const Schedule = db.model('Schedule');
-  const schedule = new Schedule(req.body);
+  const Job = db.model('Job');
+  const job = new Job(req.body);
 
-  schedule.save();
+  job.save();
 
-  res.send(schedule);
+  res.send(job);
 });
 
 module.exports.save = async(function (req, res) {
   const db = req.app.get('db');
-  const Schedule = db.model('Schedule');
-  const schedule = await(Schedule.findOne({ _id: req.body._id }).exec());
+  const Job = db.model('Job');
+  const job = await(Job.findOne({ _id: req.body._id }).exec());
 
-  _.assign(schedule, req.body);
+  _.assign(job, req.body);
+  job.save();
 
-  schedule.save();
-
-  res.send(schedule);
+  res.send(job);
 });
 
 module.exports.delete = async(function (req, res) {
   "use strict";
   const db = req.app.get('db');
-  const Schedule = db.model('Schedule');
+  const Job = db.model('Job');
 
-  await(Schedule.findByIdAndRemove(req.params._id, err => {
+  await(Job.findByIdAndRemove(req.params._id, err => {
     if (err) {
       console.log(err);
       res.sendStatus(400);

@@ -1,4 +1,4 @@
-<form name="form" class="job-form">
+<form name="form" class="job-form" ng-submit="false">
 
   <span
       class="delete-icon"
@@ -33,71 +33,6 @@
       />
       Select Weekend
     </label>
-  </div>
-  <div class="job-weekdays">
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="mon"
-          ng-change="$ctrl.selectDay()";
-          ng-model="$ctrl.job.mon"
-      />
-      mon
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="tue"
-          ng-model="$ctrl.job.tue"
-      />
-      tue
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="wed"
-          ng-model="$ctrl.job.wed"
-      />
-      wed
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="thu"
-          ng-model="$ctrl.job.thu"
-      />
-      thu
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="fri"
-          ng-model="$ctrl.job.fri"
-      />
-      fri
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="sat"
-          ng-model="$ctrl.job.sat"
-      />
-      sat
-    </label>
-
-    <label class="weekday">
-      <input
-          type="checkbox"
-          id="sun"
-          ng-model="$ctrl.job.sun"
-      />
-      sun
-    </label>
 
   </div>
 
@@ -107,11 +42,18 @@
       name="time"
       type="time"
       id="time"
-      data-on-change="$ctrl.save($ctrl.job)"
       validators="{ required: true }"
       model="$ctrl.job.time"
       model-ctrl="form.time"
   ></cdp-input>
 
+  <div class="container-fluid no-padding text-right">
+    <button
+        type="submit"
+        class="btn btn-success btn-wide"
+        ng-click="$ctrl.save($ctrl.job)"
+    >Save</button>
+
+  </div>
 
 </form>

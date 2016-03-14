@@ -2,7 +2,7 @@ const _ = require('lodash');
 const express = require('express');
 const router = module.exports = express.Router();
 const ExCtrl = require('../controllers/ex');
-const ScheduleCtrl = require('../controllers/schedule');
+const JobCtrl = require('../controllers/job');
 
 [
   {
@@ -33,22 +33,22 @@ const ScheduleCtrl = require('../controllers/schedule');
   {
     path: '/api/jobs',
     method: 'get',
-    middleware: [ScheduleCtrl.get]
+    middleware: [JobCtrl.get]
   },
   {
     path: '/api/jobs',
     method: 'post',
-    middleware: [ScheduleCtrl.add]
+    middleware: [JobCtrl.add]
   },
   {
-    path: '/api/jobs',
+    path: '/api/jobs/:_id',
     method: 'put',
-    middleware: [ScheduleCtrl.save]
+    middleware: [JobCtrl.save]
   },
   {
     path: '/api/jobs/:_id',
     method: 'delete',
-    middleware: [ScheduleCtrl.delete]
+    middleware: [JobCtrl.delete]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));
