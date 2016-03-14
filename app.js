@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 const router = require('./app/lib/router');
 const PORT = process.env.PORT || 8081;
 const http = require('http');
+const cron = require('./app/lib/cron');
 
 const server = http.createServer(app);
 
@@ -18,6 +19,7 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/public/dist/index.html');
 });
 app.set('db', db);
+app.set('cron', cron);
 
 server.listen(PORT, err => {
   if (err) {

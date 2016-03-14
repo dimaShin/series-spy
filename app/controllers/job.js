@@ -19,6 +19,18 @@ module.exports.add = async(function (req, res) {
 
   job.save();
 
+  const cron = req.app.get('cron');
+
+  console.log('time: ', job.time);
+
+  cron.set({
+    name: 'job',
+    onTick: () => {
+      console.log('cron is running');
+    },
+    time: '* 30 * * * *'
+  });
+
   res.send(job);
 });
 
