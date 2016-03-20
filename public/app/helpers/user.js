@@ -72,6 +72,7 @@ class User {
   }
 
   getDefaultUser() {
+
     return _.assign(this, {
       $resolved: true,
       authorised: false,

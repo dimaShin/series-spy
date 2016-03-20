@@ -1,7 +1,10 @@
 export default class RulesListController {
-  constructor(parser) {
+  constructor($injector) {
     'ngInject';
-    this.parser = parser;
+    this.parser = $injector.get('parser');
+    this.user = $injector.get('user');
+    this.$state = $injector.get('$state');
+    this.modal = $injector.get('modal');
   }
 
   parse() {
@@ -14,5 +17,19 @@ export default class RulesListController {
     this.rules.forEach(rule => {
       rule.series = results.filter(result => result.rule_id === rule._id);
     });
+  }
+
+  addNewShow() {
+    if (this.user.authorised) {
+      this.$state.go('show');
+    }
+
+    this.modal.open({
+      message: 'You are not logged in. All data will be saved in your browser\'s storage.'
+    }).then(() => {
+      this.user.provider = 'local';
+      this.$state.go('show');
+    })
+      .catch()
   }
 }
