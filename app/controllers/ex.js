@@ -34,16 +34,11 @@ module.exports.update = async(function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
-  const data = _.pick(req.body, ['title', 'season', 'episode']);
-
-  Rules.findByIdAndUpdate(req.params._id,
-    { $set: data },
-    { new: true },
-    (err, rule) => {
-      if (err) return res.sendStatus(400);
-
-      res.send(rule);
-    });
+  const data = _.pick(req.body, ['title', 'season', 'episode', 'ru', 'en']);
+  const rule = await(Rules.findOne({ _id: req.params._id }).exec());
+  _.assign(rule, data);
+  rule.save();
+  res.send(rule);
 });
 
 module.exports.create = async(function (req, res) {

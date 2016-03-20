@@ -26,7 +26,7 @@ module.exports.add = async(function (req, res) {
   cron.set({
     name: 'job',
     onTick: () => {
-      console.log('cron is running');
+      console.log('cron is running', new Date().toISOString());
     },
     time: '* 30 * * * *'
   });
