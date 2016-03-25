@@ -10,7 +10,7 @@ $form-height: 330px;
   height: $form-height;
   max-width: 450px;
   display: flex;
-  margin: get-margin-top($nav-bar-height, $form-height) auto ;
+  margin: get-margin-top($nav-bar-height, $form-height) auto 0 auto;
   flex-direction: column;
 }
 

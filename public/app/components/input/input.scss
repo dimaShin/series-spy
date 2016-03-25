@@ -1,5 +1,14 @@
 @import '../../styles/variables';
 
+input:-webkit-autofill {
+  -webkit-box-shadow:0 0 0 50px $primary-color inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: $text-on-primary;
+}
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 50px $primary-color inset;
+  -webkit-text-fill-color: $text-on-primary;
+}
+
 .input.input--yoko {
   font-size: 1.4em;
 }
