@@ -10,27 +10,43 @@ export default ng.module('app.config.router', [ router ])
     $urlRouterProvider.otherwise('/shows');
 
     $stateProvider
-      .state('home',
-        {
-          url: '/',
-          abstract: true,
-          template: '<spy-home></spy-home>'
+      .state('home', {
+        url: '/',
+        abstract: true,
+        template: '<spy-home></spy-home>'
       })
-    .state('shows',
-      {
+      .state('userResolver', {
+        abstract: true,
+        template: '<ui-view></ui-view>',
+        parent: 'home',
+        resolve: {
+          loggedUser: ['user', '$state', (user, $state) => {
+            let loggedUser = user.get();
+            console.log('user: ', loggedUser);
+            return user.get();
+          }]
+        }
+      })
+      .state('shows', {
         url: 'shows',
-        parent: 'home',
-        template: '<rules-list rules="$ctrl.user.rules"></rules-list>',
-        controller: function (user) {
+        parent: 'userResolver',
+        template: '<rules-list ' +
+          ' rules="$resolve.rules"></rules-list>',
+        controller: function (loggedUser, rules) {
           "ngInject";
-          this.user = user;
+          this.rules = rules.get({ user_id: loggedUser._id });
         },
-        controllerAs: '$ctrl'
-    })
-    .state('schedule',
-      {
+        controllerAs: '$resolve',
+        resolve: {
+          rules: ['rules', 'loggedUser', (rules, loggedUser) => {
+            console.log('resolved user: ', loggedUser);
+            return rules.get({ user_id: loggedUser._id })
+          }]
+        }
+      })
+      .state('schedule', {
         url: 'schedule',
-        parent: 'home',
+        parent: 'userResolver',
         template: '<schedule></schedule>',
         resolve: {
           jobs: (user) => {
@@ -38,11 +54,10 @@ export default ng.module('app.config.router', [ router ])
             return user.getJobs().$promise;
           }
         }
-    })
-    .state('show',
-      {
+      })
+      .state('show', {
         url: 'show/:_id',
-        parent: 'home',
+        parent: 'userResolver',
         template: '<rule-details rule="$ctrl.rule"></rule-details>',
         params: {
           rule: null
@@ -65,11 +80,11 @@ export default ng.module('app.config.router', [ router ])
           this.rule = rule;
         },
         controllerAs: '$ctrl'
-    })
-    .state('signIn', {
-      parent: 'home',
-      url: 'sigin',
-      template: '<sign-in />'
-    })
+      })
+      .state('signIn', {
+        parent: 'home',
+        url: 'sigin',
+        template: '<sign-in />'
+      })
 
   }).name;

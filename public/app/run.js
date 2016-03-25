@@ -5,7 +5,7 @@ export default angular.module('app.run', [])
     'ngInject'
 
     $rootScope.$on('$stateChangeError', ($ev, to, toParams, from, fromParams, err) => {
-      $state.go('shows');
+      $state.go('signIn');
       throw (err);
     })
 

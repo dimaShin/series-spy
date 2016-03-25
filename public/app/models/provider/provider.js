@@ -24,10 +24,14 @@ class Provider {
 
   get() {
     if (!this.activeProvider) {
-      throw 'There is no active provider yet';
+      return this._getDefaultProvider();
     }
 
     return this.activeProvider;
+  }
+
+  _getDefaultProvider() {
+    return this.providers.local;
   }
 }
 

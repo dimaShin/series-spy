@@ -21,7 +21,7 @@ export default class SignInController {
     }).then(() => {
       console.log('after: ', this);
       this.provider.set('local');
-      this.user.get();
+      debugger;
       this.$state.go('shows');
     });
   }
