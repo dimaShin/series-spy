@@ -1,16 +1,10 @@
 @import '../../styles/variables';
 
-$form-height: 330px;
-
-@function get-margin-top($nav-bar-height, $form-height){
-  @return calc((100vh - (#{$nav-bar-height}*2 + #{$form-height})) / 2);
-}
 
 .x-form {
-  height: $form-height;
   max-width: 450px;
   display: flex;
-  margin: get-margin-top($nav-bar-height, $form-height) auto 0 auto;
+  margin: 10px auto;
   flex-direction: column;
 }
 

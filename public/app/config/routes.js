@@ -14,12 +14,7 @@ export default ng.module('app.config.router', [ router ])
         {
           url: '/',
           abstract: true,
-          template: '<spy-home></spy-home>',
-          resolve: {
-            user: ['user', user => {
-              return user.resolve();
-            }]
-          }
+          template: '<spy-home></spy-home>'
       })
     .state('shows',
       {

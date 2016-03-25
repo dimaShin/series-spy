@@ -1,6 +1,7 @@
+import angular from 'angular';
 import _ from 'lodash';
 
-export default class LocalStorageAdapter {
+export default class LocalStorageProvider {
   constructor($window, $q) {
     'ngInject';
     this.storage = $window.localStorage;
@@ -47,3 +48,7 @@ export default class LocalStorageAdapter {
     });
   }
 }
+
+export default angular.module('app.providers.local', [])
+  .service('localStorageProvider', LocalStorageProvider)
+  .name;
