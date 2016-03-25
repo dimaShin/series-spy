@@ -6,7 +6,6 @@ class Rules {
 
     this.localStorage = $injector.get('window').localStorage;
     this.$q = $injector.get('$q');
-    this.user = $injector.get('user');
     this.$resource = $injector.get('$resource')('/api/rules/:_id',
       { _id: '@_id' },
       {

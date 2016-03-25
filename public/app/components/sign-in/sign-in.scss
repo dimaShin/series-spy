@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+
+$form-height: 330px;
+
+@function get-margin-top($nav-bar-height, $form-height){
+  @return calc((100vh - (#{$nav-bar-height}*2 + #{$form-height})) / 2);
+}
+
+.x-form {
+  height: $form-height;
+  max-width: 450px;
+  display: flex;
+  margin: get-margin-top($nav-bar-height, $form-height) auto ;
+  flex-direction: column;
+}
+
+.x-form-control {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.x-form-control cdp-input {
+  width: 100%;
+}
+
+.x-form-control cdp-input span.input {
+  max-width: 100%;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.x-form-footer {
+  margin-top: 20px;
+  text-align: right;
+}

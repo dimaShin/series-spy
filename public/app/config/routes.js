@@ -70,5 +70,11 @@ export default ng.module('app.config.router', [ router ])
           this.rule = rule;
         },
         controllerAs: '$ctrl'
-    });
+    })
+    .state('signIn', {
+      parent: 'home',
+      url: 'sigin',
+      template: '<sign-in />'
+    })
+
   }).name;

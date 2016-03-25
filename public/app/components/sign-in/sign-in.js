@@ -1,6 +1,7 @@
 import ng from 'angular';
 import uiModal from 'angular-ui-bootstrap/src/modal';
 
+import './sign-in.scss';
 import template from './sign-in.html';
 import SignInController from './sign-in-controller'
 

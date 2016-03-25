@@ -1,10 +1,6 @@
 export default class SignInController {
-  constructor($uibModal) {
+  constructor() {
     'ngInject';
-    this.$uibModal = $uibModal;
-  }
-
-  openModal() {
-    console.log(this.$uibModal);
+    
   }
 }

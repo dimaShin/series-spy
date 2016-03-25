@@ -1,0 +1,34 @@
+<form name="$ctrl.form">
+
+  <div class="x-form">
+
+    <div class="x-form-control">
+      <cdp-input
+          data-label="email"
+          data-type="email"
+          model="$ctrl.user.email"
+          data-model-ctrl="$ctrl.form.email"
+          validators="{ required: true, email: true }"
+      ></cdp-input>
+    </div>
+
+    <div class="x-form-control">
+      <cdp-input
+          data-label="password"
+          data-type="password"
+          model="$ctrl.user.password"
+          data-model-ctrl="$ctrl.form.password"
+          validators="{ required: true, password: true }"
+      ></cdp-input>
+    </div>
+
+    <div class="x-form-footer">
+      <button type="submit"
+              class="btn btn-primary btn-wide"
+              ng-click="$ctrl.signIn()"
+      >SignIn</button>
+    </div>
+  </div>
+
+
+</form>
