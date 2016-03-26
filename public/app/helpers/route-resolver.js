@@ -24,5 +24,5 @@ class ResolveProvider {
 }
 
 export default angular.module('app.helpers.route-resolver', [])
-  .service('resolveProvider', ResolveProvider)
+  .provider('resolveProvider', ResolveProvider)
   .name;
