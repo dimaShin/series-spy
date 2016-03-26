@@ -2,7 +2,7 @@ import ng from 'angular';
 import router from 'angular-ui-router';
 
 export default ng.module('app.config.router', [ router ])
-  .config(($stateProvider, $locationProvider, $urlRouterProvider) => {
+  .config(($stateProvider, $locationProvider, $urlRouterProvider, resolveProvider) => {
     'ngInject';
 
     $locationProvider.html5Mode(true);
@@ -15,26 +15,23 @@ export default ng.module('app.config.router', [ router ])
         abstract: true,
         template: '<spy-home></spy-home>'
       })
-      .state('userResolver', {
+      .state('auth', {
         abstract: true,
         template: '<ui-view></ui-view>',
         parent: 'home',
         resolve: {
-          loggedUser: ['user', '$state', (user, $state) => {
-            let loggedUser = user.get();
-            console.log('user: ', loggedUser);
+          loggedUser: ['user', '$state', user => {
             return user.get();
           }]
         }
       })
       .state('shows', {
         url: 'shows',
-        parent: 'userResolver',
-        template: '<rules-list ' +
-          ' rules="$resolve.rules"></rules-list>',
-        controller: function (loggedUser, rules) {
+        parent: 'auth',
+        template: '<rules-list rules="$resolve.rules"></rules-list>',
+        controller: function (rules) {
           "ngInject";
-          this.rules = rules.get({ user_id: loggedUser._id });
+          this.rules = rules;
         },
         controllerAs: '$resolve',
         resolve: {
@@ -46,12 +43,14 @@ export default ng.module('app.config.router', [ router ])
       })
       .state('schedule', {
         url: 'schedule',
-        parent: 'userResolver',
-        template: '<schedule></schedule>',
+        parent: 'auth',
+        template: '<schedule jobs="$resolve.jobs"></schedule>',
+        controller: resolveProvider.getController(['jobs']),
+        controllerAs: '$resolve',
         resolve: {
-          jobs: (user) => {
+          jobs: (loggerUser, jobs) => {
             "ngInject";
-            return user.getJobs().$promise;
+            return jobs.get({ user_id: loggerUser._id});
           }
         }
       })
@@ -84,7 +83,7 @@ export default ng.module('app.config.router', [ router ])
       .state('signIn', {
         parent: 'home',
         url: 'sigin',
-        template: '<sign-in />'
+        template: '<sign-in></sign-in>'
       })
 
   }).name;

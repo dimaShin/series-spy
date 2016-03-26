@@ -37,6 +37,7 @@ class Provider {
 
 
 export default angular
-  .module('app.providers.provider', [ localStorageProvider, mongodbProvider ])
+  .module('app.providers.provider',
+    [ localStorageProvider, mongodbProvider ])
   .service('provider', Provider)
   .name;

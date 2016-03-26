@@ -14,7 +14,7 @@ class UserModel{
     }
     
     return this.$q(resolve => {
-      return this.user;
+      return resolve(this.user);
     })
   }
 }
