@@ -8,8 +8,13 @@ class UserApi {
   }
 
   get() {
-    let provider = this.providerService.get();
+    let provider = this.providerService.get('user');
     return provider.get('user');
+  }
+
+  create(user) {
+    let provider = this.providerService.get();
+    return provider.create('user', user);
   }
 }
 

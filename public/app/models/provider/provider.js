@@ -35,7 +35,7 @@ class Provider {
   }
 
   isLocal() {
-    return this.activeProvider === 'local';
+    return this.activeProvider.type === 'local';
   }
 }
 

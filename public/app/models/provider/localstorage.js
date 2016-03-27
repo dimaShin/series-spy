@@ -4,6 +4,7 @@ import _ from 'lodash';
 export default class LocalStorageProvider {
   constructor($window, $q) {
     'ngInject';
+    this.type = 'local';
     this.storage = $window.localStorage;
     this.$q = $q;
   }
@@ -11,12 +12,22 @@ export default class LocalStorageProvider {
   get(item, filter) {
     return this.$q((resolve, reject) => {
       let collection = this.storage.getItem(item);
+
+      try {
+        collection = JSON.parse(collection);
+      } catch (err) {
+        reject(err);
+      }
       
       if (!collection) {
         return reject(collection);
       }
 
-      return resolve(_.filter(collection, filter || {}));
+      if (!filter) {
+        return resolve(collection);
+      }
+
+      return resolve(_.filter(collection, filter));
     })
   }
 
@@ -27,7 +38,7 @@ export default class LocalStorageProvider {
     }
 
     return this.$q(resolve => {
-      let data = this.storage.setItem(item, value);
+      let data = this.storage.setItem(item, JSON.stringify(value));
       return resolve(data);
     });
   }

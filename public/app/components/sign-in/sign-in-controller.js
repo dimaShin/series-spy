@@ -9,7 +9,6 @@ export default class SignInController {
   }
 
   anonymous() {
-    console.log('before: ', this);
     this.modal.open({
       plain: true,
       template: '<confirm-modal ' +
@@ -19,9 +18,7 @@ export default class SignInController {
         '></confirm-modal>',
       message: `All your data will be saved in current browser.`
     }).then(() => {
-      console.log('after: ', this);
       this.provider.set('local');
-      debugger;
       this.$state.go('shows');
     });
   }

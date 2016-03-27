@@ -27,7 +27,7 @@ class UserModel{
         this.api.create({ authorised: false })
           .then(user => {
             this.user = user;
-            resolve.user();
+            resolve(user);
           });
       })
     });
