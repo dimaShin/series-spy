@@ -9,13 +9,28 @@ class UserModel{
   }
   
   get() {
-    if (!this.user) {
-      return this.api.get(arguments)
+    return this.user;
+  }
+
+  signin() {
+    if (!this.api.providerService.isLocal()) {
+      return this.api.get().then(user => {
+        this.user = user;
+      });
     }
-    
+
     return this.$q(resolve => {
-      return resolve(this.user);
-    })
+      this.api.get().then(user => {
+        this.user = user;
+        return resolve(user);
+      }).catch(() => {
+        this.api.create({ authorised: false })
+          .then(user => {
+            this.user = user;
+            resolve.user();
+          });
+      })
+    });
   }
 }
 

@@ -1,8 +1,8 @@
 import angular from 'angular';
 
 class ResolveProvider {
-  costructor() {
-    
+  constructor() {
+    console.log('resolve: ', this);
   }
 
   $get = {};

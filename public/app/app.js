@@ -15,9 +15,9 @@ import run from './run';
 angular.module('app', [
   ngRoute,
   ngAnimate,
-  config,
+  helpers,
   models,
   components,
-  helpers,
+  config,
   run
 ]);

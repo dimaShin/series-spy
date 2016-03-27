@@ -6,7 +6,8 @@ export default angular.module('app.run', [])
 
     $rootScope.$on('$stateChangeError', ($ev, to, toParams, from, fromParams, err) => {
       $state.go('signIn');
-      throw (err);
+
+      console.log('$stateChangeError', err, arguments);
     })
 
   }).name;

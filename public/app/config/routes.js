@@ -20,8 +20,8 @@ export default ng.module('app.config.router', [ router ])
         template: '<ui-view></ui-view>',
         parent: 'home',
         resolve: {
-          loggedUser: ['user', '$state', user => {
-            return user.get();
+          auth: ['user', '$state', user => {
+            return user.signin();
           }]
         }
       })
@@ -35,9 +35,8 @@ export default ng.module('app.config.router', [ router ])
         },
         controllerAs: '$resolve',
         resolve: {
-          rules: ['rules', 'loggedUser', (rules, loggedUser) => {
-            console.log('resolved user: ', loggedUser);
-            return rules.get({ user_id: loggedUser._id })
+          rules: ['rules', 'user', (rules, user) => {
+            return rules.get({ user_id: user.get()._id });
           }]
         }
       })
@@ -48,9 +47,9 @@ export default ng.module('app.config.router', [ router ])
         controller: resolveProvider.getController(['jobs']),
         controllerAs: '$resolve',
         resolve: {
-          jobs: (loggerUser, jobs) => {
+          jobs: (user, jobs) => {
             "ngInject";
-            return jobs.get({ user_id: loggerUser._id});
+            return jobs.get({ user_id: user.get()._id});
           }
         }
       })

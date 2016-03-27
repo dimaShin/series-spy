@@ -33,6 +33,10 @@ class Provider {
   _getDefaultProvider() {
     return this.providers.local;
   }
+
+  isLocal() {
+    return this.activeProvider === 'local';
+  }
 }
 
 
