@@ -13,6 +13,31 @@
   <base href="/">
 </head>
 <body>
-  <ui-view>Loading...</ui-view>
+<div class="app-root-container">
+
+  <nav class="app-root-navbar navbar-primary app-navbar-fixed-top">
+    <div class="nav-title">TV Spy</div>
+    <div class="nav-actions">
+      <spy-auth></spy-auth>
+    </div>
+  </nav>
+
+  <div class="app-content-container">
+    <ui-view>Loading...</ui-view>
+  </div>
+
+  <nav class="app-root-navbar navbar-default app-navbar-fixed-bottom text-right">
+    <ul class="app-site-map">
+      <li class="navbar-brand" ui-sref-active="">
+        <a ui-sref="shows">TV Shows</a>
+      </li>
+      <li class="navbar-brand" ui-sref-active="">
+        <a ui-sref="schedule">Schedule</a>
+      </li>
+    </ul>
+  </nav>
+
+
+</div>
 </body>
 </html>

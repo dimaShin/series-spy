@@ -10,15 +10,9 @@ export default ng.module('app.config.router', [ router ])
     $urlRouterProvider.otherwise('/shows');
 
     $stateProvider
-      .state('home', {
-        url: '/',
-        abstract: true,
-        template: '<spy-home></spy-home>'
-      })
       .state('auth', {
         abstract: true,
         template: '<ui-view></ui-view>',
-        parent: 'home',
         resolve: {
           auth: ['user', '$state', user => {
             return user.signin();
@@ -26,7 +20,7 @@ export default ng.module('app.config.router', [ router ])
         }
       })
       .state('shows', {
-        url: 'shows',
+        url: '/shows',
         parent: 'auth',
         template: '<rules-list rules="$resolve.rules"></rules-list>',
         controller: function (rules) {
@@ -41,7 +35,7 @@ export default ng.module('app.config.router', [ router ])
         }
       })
       .state('schedule', {
-        url: 'schedule',
+        url: '/schedule',
         parent: 'auth',
         template: '<schedule jobs="$resolve.jobs"></schedule>',
         controller: resolveProvider.getController(['jobs']),
@@ -54,8 +48,8 @@ export default ng.module('app.config.router', [ router ])
         }
       })
       .state('show', {
-        url: 'show/:_id',
-        parent: 'userResolver',
+        url: '/show/:_id',
+        parent: 'auth',
         template: '<rule-details rule="$ctrl.rule"></rule-details>',
         params: {
           rule: null
@@ -80,8 +74,7 @@ export default ng.module('app.config.router', [ router ])
         controllerAs: '$ctrl'
       })
       .state('signIn', {
-        parent: 'home',
-        url: 'sigin',
+        url: '/sigin',
         template: '<sign-in></sign-in>'
       })
 
