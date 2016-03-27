@@ -24,7 +24,7 @@ module.exports = {
       title: 'Series Spy',
       description: 'Spy new series of your favorite shows',
       filename: './index.html',
-      template: './public/base.html',
+      template: './public/index.html',
       favicon: './public/favicon.ico',
       inject: 'body'
     })
