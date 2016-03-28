@@ -22,17 +22,7 @@ export default ng.module('app.config.router', [ router ])
       .state('shows', {
         url: '/shows',
         parent: 'auth',
-        template: '<rules-list rules="$resolve.rules"></rules-list>',
-        controller: function (rules) {
-          "ngInject";
-          this.rules = rules;
-        },
-        controllerAs: '$resolve',
-        resolve: {
-          rules: ['rules', 'user', (rules, user) => {
-            return rules.get({ user_id: user.get()._id });
-          }]
-        }
+        template: '<rules-list></rules-list>'
       })
       .state('schedule', {
         url: '/schedule',

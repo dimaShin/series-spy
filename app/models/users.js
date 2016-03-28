@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const Users = new Schema({
   email: String,
-  password: String
+  password: String,
+  shows: Array,
+  jobs: Array
 });
 
 mongoose.model('Users', Users);
