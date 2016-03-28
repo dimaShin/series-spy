@@ -12,6 +12,10 @@ class UserModel{
     return this.user;
   }
 
+  save() {
+    return this.api.save(this.user);
+  }
+
   getRules() {
     return this.user.shows;
   }
@@ -22,7 +26,7 @@ class UserModel{
         this.user = user;
         return resolve(user);
       }).catch(err => {
-        if (!this.api.providerService.isLocal()) {
+        if (this.api.providerService.isLocal()) {
           return this.api.create({ authorised: false, shows: [], jobs: [] })
             .then(user => {
               this.user = user;

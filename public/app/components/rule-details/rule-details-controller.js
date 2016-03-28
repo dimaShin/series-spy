@@ -7,11 +7,12 @@ export default class RuleDetailsController {
 
   save() {
     if (!this.rule._id) {
-      const newRule = this.user.rulesResource.add(this.rule);
-      this.user.rules.push(newRule);
-    } else {
-      this.rule.$save();
+      this.rule._id = Math.ceil(Math.random() * 10e7);
+      let loggedUser = this.user.get();
+      loggedUser.shows.push(this.rule);
     }
+
+    this.user.save();
 
     return this.$state.go('shows');
   }

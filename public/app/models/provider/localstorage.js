@@ -38,8 +38,8 @@ export default class LocalStorageProvider {
     }
 
     return this.$q(resolve => {
-      let data = this.storage.setItem(item, JSON.stringify(value));
-      return resolve(data);
+      this.storage.setItem(item, JSON.stringify(value));
+      return resolve(value);
     });
   }
 
