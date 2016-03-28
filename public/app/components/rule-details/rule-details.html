@@ -1,5 +1,5 @@
 <form name="form" ng-submit="false">
-  <div class="container-fluid no-padding flex-center">
+  <div class="x-form-control">
     <cdp-input
         data-label="title"
         model="$ctrl.rule.title"
@@ -7,7 +7,7 @@
         validators="{ required: true }"
     ></cdp-input>
   </div>
-  <div class="container-fluid no-padding flex-center">
+  <div class="x-form-control">
     <cdp-input
         data-label="russian"
         data-name="ru"
@@ -16,7 +16,7 @@
         validators="{ required: true }"
     ></cdp-input>
   </div>
-  <div class="container-fluid no-padding flex-center">
+  <div class="x-form-control">
     <cdp-input
         data-label="english"
         data-name="en"
@@ -29,25 +29,31 @@
   <div class="flex-row container-fluid no-padding">
 
     <div class="col-sm-6 no-padding">
-      <cdp-input
-          data-label="season"
-          data-type="number"
-          data-name="season"
-          model="$ctrl.rule.season"
-          data-model-ctrl="form.season"
-          validators="{ required: true }"
-      ></cdp-input>
+      <div class="x-form-control">
+        <cdp-input
+            data-label="season"
+            data-type="number"
+            data-name="season"
+            model="$ctrl.rule.season"
+            data-model-ctrl="form.season"
+            validators="{ required: true }"
+        ></cdp-input>
+      </div>
+
     </div>
 
     <div class="col-sm-6 no-padding">
-      <cdp-input
-          data-label="episode"
-          data-type="number"
-          data-name="episode"
-          model="$ctrl.rule.episode"
-          data-model-ctrl="form.episode"
-          validators="{ required: true }"
-      ></cdp-input>
+      <div class="x-form-control">
+        <cdp-input
+            data-label="episode"
+            data-type="number"
+            data-name="episode"
+            model="$ctrl.rule.episode"
+            data-model-ctrl="form.episode"
+            validators="{ required: true }"
+        ></cdp-input>
+      </div>
+
     </div>
   </div>
 

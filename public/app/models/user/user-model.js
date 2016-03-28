@@ -17,22 +17,19 @@ class UserModel{
   }
 
   signin() {
-    if (!this.api.providerService.isLocal()) {
-      return this.api.get().then(user => {
-        this.user = user;
-      });
-    }
-
-    return this.$q(resolve => {
+    return this.$q((resolve, reject) => {
       this.api.get().then(user => {
         this.user = user;
         return resolve(user);
-      }).catch(() => {
-        this.api.create({ authorised: false, shows: [], jobs: [] })
-          .then(user => {
-            this.user = user;
-            resolve(user);
-          });
+      }).catch(err => {
+        if (!this.api.providerService.isLocal()) {
+          return this.api.create({ authorised: false, shows: [], jobs: [] })
+            .then(user => {
+              this.user = user;
+              resolve(user);
+            });
+        }
+        reject(err);
       })
     });
   }
