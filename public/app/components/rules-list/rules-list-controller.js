@@ -5,6 +5,7 @@ export default class RulesListController {
     this.user = $injector.get('user');
     this.$state = $injector.get('$state');
     this.modal = $injector.get('modal');
+    this.rules = this.user.getRules();
   }
 
   parse() {
@@ -20,16 +21,6 @@ export default class RulesListController {
   }
 
   addNewShow() {
-    if (this.user.authorised) {
-      this.$state.go('show');
-    }
-
-    this.modal.open({
-      message: 'You are not logged in. All data will be saved in your browser\'s storage.'
-    }).then(() => {
-      this.user.provider = 'local';
-      this.$state.go('show');
-    })
-      .catch()
+    this.$state.go('show');
   }
 }

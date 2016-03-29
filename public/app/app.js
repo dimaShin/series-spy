@@ -1,6 +1,7 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
+import 'angular-easyfb';
 
 import './styles/custom-bootstrap.less';
 import './styles/main.scss';
@@ -13,6 +14,7 @@ import helpers from './helpers/';
 import run from './run';
 
 angular.module('app', [
+  'ezfb',
   ngRoute,
   ngAnimate,
   helpers,
