@@ -7,14 +7,6 @@ export default class SignInController {
     this.provider = $injector.get('provider');
     this.user = $injector.get('user');
     this.ezfb = $injector.get('ezfb');
-
-    this.getLoginStatus();
-  }
-
-  getLoginStatus() {
-    return this.ezfb.getLoginStatus(status => {
-      console.log('fb login status: ', status);
-    });
   }
 
   anonymous() {
@@ -41,6 +33,15 @@ export default class SignInController {
 
   _fbLogin() {
     this.ezfb.login().then(response => {
+      let user = {
+        straightLogin: true,
+        providerData: {
+          provider: 'fb',
+          response: response
+        }
+      };
+
+      this.user.signup(user);
       console.log(response);
     })
   }

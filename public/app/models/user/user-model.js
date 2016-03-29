@@ -37,6 +37,11 @@ class UserModel{
       })
     });
   }
+  
+  signup(user) {
+    this.providerService.set('remote');
+    this.api.create('user', user)
+  }
 }
 
 export default angular.module('app.models.user', [api])
