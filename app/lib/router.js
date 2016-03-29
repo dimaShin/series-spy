@@ -3,6 +3,7 @@ const express = require('express');
 const router = module.exports = express.Router();
 const ExCtrl = require('../controllers/ex');
 const JobCtrl = require('../controllers/job');
+const UserCtrl = require('../controllers/user');
 
 [
   {
@@ -49,6 +50,11 @@ const JobCtrl = require('../controllers/job');
     path: '/api/jobs/:_id',
     method: 'delete',
     middleware: [JobCtrl.delete]
+  },
+  {
+    path: '/api/user',
+    method: 'post',
+    middleware: [UserCtrl.create]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));
