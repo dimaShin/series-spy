@@ -15,6 +15,7 @@
   "dependencies": {
     "angular": "^1.5.0",
     "angular-animate": "^1.5.0",
+    "angular-easyfb": "^1.4.2",
     "angular-messages": "^1.5.0",
     "angular-resource": "^1.5.0",
     "angular-route": "^1.5.0",
@@ -35,6 +36,7 @@
     "lodash": "^4.0.0",
     "mongoose": "^4.3.7",
     "ng-dialog": "^0.5.8",
+    "ng-facebook": "^0.1.6",
     "node-cron-jobs": "^1.0.4",
     "nodemailer": "^1.11.0",
     "request": "^2.67.0",

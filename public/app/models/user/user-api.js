@@ -16,6 +16,11 @@ class UserApi {
     let provider = this.providerService.get();
     return provider.create('user', user);
   }
+
+  save(user) {
+    let provider = this.providerService.get();
+    return provider.save('user', user);
+  }
 }
 
 export default angular.module('app.models.user.api', [ provider ])

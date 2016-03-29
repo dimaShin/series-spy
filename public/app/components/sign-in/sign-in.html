@@ -2,9 +2,16 @@
 
   <div class="x-form">
 
-    <a class="btn btn-link"
-       ng-click="$ctrl.anonymous()"
-    >I want to stay anonymous</a>
+    <div class="socials-btns">
+      <a class="btn btn-link"
+         ng-click="$ctrl.login('fb')"
+      >Login with Facebook</a>
+    </div>
+    <div class="flex-1 text-center">
+      <a class="btn btn-link"
+         ng-click="$ctrl.anonymous()"
+      >I want to stay anonymous</a>
+    </div>
 
     <div class="x-form-control">
       <cdp-input
