@@ -8,6 +8,7 @@ import './styles/main.scss';
 import 'font-awesome/css/font-awesome.css'
 
 import config from './config/';
+import routes from './routes/';
 import models from './models/';
 import components from './components/';
 import helpers from './helpers/';
@@ -17,6 +18,7 @@ angular.module('app', [
   'ezfb',
   ngRoute,
   ngAnimate,
+  routes,
   helpers,
   models,
   components,

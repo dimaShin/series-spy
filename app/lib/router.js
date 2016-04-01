@@ -4,6 +4,7 @@ const router = module.exports = express.Router();
 const ExCtrl = require('../controllers/ex');
 const JobCtrl = require('../controllers/job');
 const UserCtrl = require('../controllers/user');
+const AuthCtrl = require('../controllers/auth');
 
 [
   {
@@ -55,6 +56,11 @@ const UserCtrl = require('../controllers/user');
     path: '/api/user',
     method: 'post',
     middleware: [UserCtrl.create]
+  },
+  {
+    path: '/api/signup',
+    method: 'post',
+    middleware: [AuthCtrl.signUp]
   }
 ].forEach(function(route) {
   router[route.method].apply(router, _.flatten([route.path, route.middleware]));

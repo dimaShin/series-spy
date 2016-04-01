@@ -1,5 +1,6 @@
+"use strict";
 const async = require('asyncawait/async');
-const await = require('asyncawait/await')
+const await = require('asyncawait/await');
 
 module.exports.create = function (req, res) {
   let db = req.get('db'),

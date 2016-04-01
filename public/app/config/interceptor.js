@@ -3,6 +3,7 @@ import angular from 'angular';
 export default angular.module('app.config.interceptor', [])
   .config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push(function($q, $window) {
+      'ngInject';
       return {
         'request': function(config) {
 

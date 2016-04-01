@@ -33,16 +33,17 @@ export default class SignInController {
 
   _fbLogin() {
     this.ezfb.login().then(response => {
+      console.log(response);
       let user = {
         straightLogin: true,
-        providerData: {
-          provider: 'fb',
-          response: response
-        }
+        providerUserId: response.authResponse.userID,
+        providerType: 'fb',
+        providerData: response.authResponse
       };
 
-      this.user.signup(user);
-      console.log(response);
+      this.user.signup(user).then(user => {
+        this.$state.go('shows');
+      });
     })
   }
 }

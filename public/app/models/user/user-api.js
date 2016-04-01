@@ -1,10 +1,18 @@
 import angular from 'angular';
-import provider from 'models/provider';
+import ngResource from 'angular-resource';
 
 class UserApi {
-  constructor(provider) {
+  constructor(provider, $resource) {
     'ngInject';
     this.providerService = provider;
+    this.resourse = $resource('api/auth/user/:_id',
+      { _id: '@_id' },
+      {
+        put   : { method: 'PUT' },
+        create: { method: 'POST' },
+        signup: { method: 'post', url: 'api/signup' }
+      }
+    )
   }
 
   get() {
@@ -21,8 +29,16 @@ class UserApi {
     let provider = this.providerService.get();
     return provider.save('user', user);
   }
+
+  getByToken(token) {
+    return this.resourse.get( {token: token} );
+  }
+
+  signup(user) {
+    return this.resourse.signup(user);
+  }
 }
 
-export default angular.module('app.models.user.api', [ provider ])
+export default angular.module('app.models.user.api', [ ngResource ])
   .service('userApi', UserApi)
   .name;

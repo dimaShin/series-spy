@@ -2,12 +2,39 @@ import angular from 'angular';
 import api from './user-api';
 
 class UserModel{
-  constructor(userApi, $q) {
+
+  constructor(userApi, $q, token) {
     'ngInject';
     this.$q = $q;
     this.api = userApi;
+    this.token = token;
   }
-  
+
+  resolve() {
+
+    return this.$q((resolve, reject) => {
+      let token = this.token.get();
+
+      if (this.user) {
+        return resolve(this.user);
+      }
+
+      if (!token) {
+        return resolve(null);
+      }
+
+      this.api.getByToken(token)
+        .then(user => {
+          this.user = user;
+          return resolve(user);
+        })
+        .catch(err => {
+          return reject(err);
+        });
+    })
+
+  }
+
   get() {
     return this.user;
   }
@@ -39,8 +66,11 @@ class UserModel{
   }
   
   signup(user) {
-    this.providerService.set('remote');
-    this.api.create('user', user)
+    let promise = this.api.signup(user).$promise;
+    promise.then(user => {
+      this.user = user;
+    });
+    return promise;
   }
 }
 
