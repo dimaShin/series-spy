@@ -7,6 +7,7 @@ class TokenManager{
   }
 
   generate(tokenInfo) {
+    console.log('generating token: ', tokenInfo);
     return jwt.sign({
       generatedAt: Date.now(),
       userId: tokenInfo.userId,
@@ -16,8 +17,14 @@ class TokenManager{
   }
 
   update(token) {
-    let tokenInfo = jwt.verify(token, this.secret);
+    console.log('update: ', token);
+    let tokenInfo = this.parse(token);
     return this.generate(tokenInfo);
+  }
+
+  parse(token) {
+    console.log('parsing: ', token);
+    return jwt.verify(token, this.secret);
   }
 }
 

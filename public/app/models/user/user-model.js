@@ -20,6 +20,7 @@ class UserModel{
       }
 
       if (!token) {
+        this.user = null;
         return resolve(null);
       }
 

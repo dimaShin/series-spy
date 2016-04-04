@@ -8,25 +8,27 @@ class PolicyManager {
     this.tokenKey = 'xx-token';
   }
 
-  middleware(req, res, next) {
-    let user = this.getUserByToken(req.header(this.tokenKey));
+  async middleware(req, res, next) {
+    console.log('middleware: ', req.header(this.tokenKey));
+    let token = req.header(this.tokenKey);
+    let user = await this.getUserByToken(token);
     if (!user) {
       return res.sendStatus(401);
     }
-
-    user.token = this.token.update(user.token);
+    console.log('got user: ', user);
+    user.token = this.token.update(token);
     user.save();
     req.user = user;
     res.setHeader(this.tokenKey, user.token);
     next();
   }
 
-  getUserByToken(token) {
+  async getUserByToken(token) {
     if (!token) {
       return null;
     }
 
-    return this.Users.findByToken(token);
+    return await this.Users.findByToken(token);
   }
 
   addTokenToResponse(token, res) {

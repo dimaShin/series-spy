@@ -1,8 +1,9 @@
 import angular from 'angular';
 
-import auth from './auth';
+import authRoutes from './auth';
+import appRoutes from './app';
 
-export default angular.module('app.routes', [ auth ])
+export default angular.module('app.routes', [ authRoutes, appRoutes ])
   .config(function ($locationProvider, $urlRouterProvider) {
     'ngInject';
     $locationProvider.html5Mode(true);

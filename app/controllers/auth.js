@@ -1,28 +1,18 @@
 "use strict";
-const async = require('asyncawait/async');
-const await = require('asyncawait/await');
+// const async = require('asyncawait/async');
+// const await = require('asyncawait/await');
 const _ = require('lodash');
 
-module.exports.sigIn = async(function (req, res) {
-  const token = req.body.token;
-
-  if (!token) {
-    return res.sendStatus(401);
-  }
-
-  const db = req.get('db')
-});
-
-module.exports.signUp = async(function (req, res) {
+module.exports.signUp = async function (req, res) {
   let db = req.app.get('db'),
     Users = db.model('Users'),
     user;
 
   if (req.body.providerUserId && req.body.providerType) {
-    user = await(Users.findOrCreate({
+    user = await Users.findOrCreate({
       providerUserId: req.body.providerUserId,
       providerType: req.body.providerType
-    }));
+    });
   } else {
     user = Users({});
   }
@@ -47,9 +37,8 @@ module.exports.signUp = async(function (req, res) {
     req.app.get('policy').addTokenToResponse(user.token, res);
   }
 
-  console.log('user created: ', user);
   user.save();
 
   res.send(user);
   
-});
+};

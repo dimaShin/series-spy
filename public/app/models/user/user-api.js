@@ -5,7 +5,7 @@ class UserApi {
   constructor(provider, $resource) {
     'ngInject';
     this.providerService = provider;
-    this.resourse = $resource('api/auth/user/:_id',
+    this.resourse = $resource('api/private/user/:_id',
       { _id: '@_id' },
       {
         put   : { method: 'PUT' },
@@ -31,7 +31,7 @@ class UserApi {
   }
 
   getByToken(token) {
-    return this.resourse.get( {token: token} );
+    return this.resourse.get().$promise;
   }
 
   signup(user) {

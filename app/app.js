@@ -15,15 +15,14 @@ app.configure = initialOptions => {
 
 app.set('db', db);
 app.set('cron', cron);
+app.set('token', require('./lib/token')());
 
 const policyManager = require('./lib/policy')(app);
-const tokenManager = require('./lib/token')();
 app.set('policy', policyManager);
-app.set('token', tokenManager);
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../public/dist'));
-app.use('/api/private', policyManager.middleware.bind(policyManager));
+app.use('/api/private/user', policyManager.middleware.bind(policyManager));
 app.use(router);
 app.use('*', (req, res) => {
   console.log('rendering index.html');

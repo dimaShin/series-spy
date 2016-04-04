@@ -1,6 +1,6 @@
 "use strict";
-const async = require('asyncawait/async');
-const await = require('asyncawait/await');
+// const async = require('asyncawait/async');
+// const await = require('asyncawait/await');
 
 module.exports.create = function (req, res) {
   let db = req.get('db'),
@@ -12,4 +12,12 @@ module.exports.create = function (req, res) {
     token: token,
     data: user
   });
+};
+
+module.exports.get = function (req, res) {
+  let user = req.user;
+
+  console.log('user: ', user);
+
+  res.send(user);
 };

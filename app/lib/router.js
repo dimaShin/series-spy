@@ -53,9 +53,14 @@ const AuthCtrl = require('../controllers/auth');
     middleware: [JobCtrl.delete]
   },
   {
-    path: '/api/user',
+    path: '/api/private/user',
     method: 'post',
     middleware: [UserCtrl.create]
+  },
+  {
+    path: '/api/private/user',
+    method: 'get',
+    middleware: [UserCtrl.get]
   },
   {
     path: '/api/signup',

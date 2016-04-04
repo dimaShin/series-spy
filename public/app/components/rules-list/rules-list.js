@@ -9,7 +9,9 @@ import './rules-list.scss';
 
 export default angular.module('app.components.rules-list', [ ruleRow, ruleDetails ])
   .component('rulesList', {
-    bindings: {},
+    bindings: {
+      user: '<'
+    },
     template,
     controller: RulesListController
   }).name;

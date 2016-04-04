@@ -1,46 +1,46 @@
-const async = require('asyncawait/async');
-const await = require('asyncawait/await');
+// const async = require('asyncawait/async');
+// const await = require('asyncawait/await');
 const _ = require('lodash');
 const ExDriver = require('./../drivers/ex_ua');
 const exDriver = new ExDriver();
 
-module.exports.get = async(function (req, res) {
+module.exports.get = async function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
-  const rules = await(Rules.find().exec());
+  const rules = await Rules.find().exec();
 
   res.send(rules);
-});
+};
 
-module.exports.delete = async(function (req, res) {
+module.exports.delete = async function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
 
   console.log('deleting rule: ', req.params._id);
-  await(Rules.findByIdAndRemove(req.params._id, err => {
+  await Rules.findByIdAndRemove(req.params._id, err => {
     if (err) {
       console.log(err);
       res.sendStatus(400);
     }
-  }));
+  });
 
   res.sendStatus(200);
-});
+};
 
-module.exports.update = async(function (req, res) {
+module.exports.update = async function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
   const data = _.pick(req.body, ['title', 'season', 'episode', 'ru', 'en']);
-  const rule = await(Rules.findOne({ _id: req.params._id }).exec());
+  const rule = await Rules.findOne({ _id: req.params._id }).exec();
   _.assign(rule, data);
   rule.save();
   res.send(rule);
-});
+};
 
-module.exports.create = async(function (req, res) {
+module.exports.create = async function (req, res) {
   "use strict";
   const db = req.app.get('db');
   const Rules = db.model('ExRules');
@@ -49,7 +49,7 @@ module.exports.create = async(function (req, res) {
   rule.save();
 
   res.send(rule);
-});
+};
 
 module.exports.parse = function (rules, ws) {
   "use strict";
