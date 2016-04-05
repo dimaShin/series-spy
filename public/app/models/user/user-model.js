@@ -3,28 +3,35 @@ import api from './user-api';
 
 class UserModel{
 
-  constructor(userApi, $q, token) {
+  constructor(userApi, $q, token, $injector) {
     'ngInject';
     this.$q = $q;
     this.api = userApi;
     this.token = token;
+    this.localStorage = $injector.get('$window').localStorage;
+  }
+
+  getUserId() {
+    return this.localStorage.getItem('xx-user-id');
   }
 
   resolve() {
 
     return this.$q((resolve, reject) => {
       let token = this.token.get();
+      let userId = this.getUserId();
+
 
       if (this.user) {
         return resolve(this.user);
       }
 
-      if (!token) {
+      if (!token || !userId) {
         this.user = null;
         return resolve(null);
       }
 
-      this.api.getByToken(token)
+      this.api.get({ _id: userId })
         .then(user => {
           this.user = user;
           return resolve(user);
@@ -41,7 +48,7 @@ class UserModel{
   }
 
   save() {
-    return this.api.save(this.user);
+    return this.user.$save().$promise;
   }
 
   getRules() {

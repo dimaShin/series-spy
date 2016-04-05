@@ -7,6 +7,7 @@ export default class SignInController {
     this.provider = $injector.get('provider');
     this.user = $injector.get('user');
     this.ezfb = $injector.get('ezfb');
+    this.localStorage = $injector.get('$window').localStorage;
   }
 
   anonymous() {
@@ -42,6 +43,7 @@ export default class SignInController {
       };
 
       this.user.signup(user).then(user => {
+        this.localStorage.setItem('xx-user-id', user._id);
         this.$state.go('shows');
       });
     })

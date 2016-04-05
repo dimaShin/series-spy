@@ -8,16 +8,19 @@ class UserApi {
     this.resourse = $resource('api/private/user/:_id',
       { _id: '@_id' },
       {
-        put   : { method: 'PUT' },
+        save  : { method: 'PUT' },
         create: { method: 'POST' },
         signup: { method: 'post', url: 'api/signup' }
       }
     )
   }
 
-  get() {
-    let provider = this.providerService.get('user');
-    return provider.get('user');
+  get(query) {
+    if (query) {
+      return this.resourse.get(query).$promise;
+    }
+
+    return this.resourse.query().$promise;
   }
 
   create(user) {

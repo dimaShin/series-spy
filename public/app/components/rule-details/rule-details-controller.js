@@ -2,7 +2,6 @@ export default class RuleDetailsController {
   constructor(user, $state) {
     "ngInject";
     this.user = user;
-    this.$state = $state;
   }
 
   save() {

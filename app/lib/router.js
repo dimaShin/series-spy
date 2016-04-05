@@ -63,6 +63,11 @@ const AuthCtrl = require('../controllers/auth');
     middleware: [UserCtrl.get]
   },
   {
+    path: '/api/private/user/:_id',
+    method: 'put',
+    middleware: [UserCtrl.save]
+  },
+  {
     path: '/api/signup',
     method: 'post',
     middleware: [AuthCtrl.signUp]
